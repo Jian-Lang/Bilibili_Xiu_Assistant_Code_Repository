@@ -1,14 +1,46 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/message/message",
+    "pages/index/index",
+    "pages/contact/contact",
+    "pages/detail/detail",
+    "pages/uni-style/uni-style",
+    "pages/home/home"
   ],
   "subPackages": [],
   "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "Lobster-Jian",
+    "navigationBarBackgroundColor": "#7FFF00",
+    "backgroundColor": "#7CCD7C",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "light"
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "tabBar": {
+    "color": "#8A8A8A",
+    "selectedColor": "#007AFF",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "text": "搜索",
+        "pagePath": "pages/index/index",
+        "iconPath": "static/search.png",
+        "selectedIconPath": "static/search.png"
+      },
+      {
+        "text": "咻友",
+        "pagePath": "pages/message/message",
+        "iconPath": "static/friend.png",
+        "selectedIconPath": "static/friend.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/contact/contact",
+        "iconPath": "static/user.png",
+        "selectedIconPath": "static/user.png"
+      }
+    ]
+  },
+  "usingComponents": {}
 }
