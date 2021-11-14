@@ -1,0 +1,48 @@
+/* pages/zujian/zujian.wxss */
+/* 表格式 */
+.table {
+  border: 0px solid darkgray;
+}
+.tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 6rem;
+  align-items: center;
+}
+.td {
+    width:60%;
+    justify-content: center;
+    text-align: center;
+}
+.bg-w{
+  background: snow;
+}
+.bg-g{
+  background: #E6F3F9;
+}
+.th {
+  width: 40%;
+  justify-content: center;
+  background: #3366FF;
+  color: #fff;
+  display: flex;
+  height: 3rem;
+  align-items: center;
+}
+
+/* 轮番图 */
+swiper{  
+    margin: 0 auto;  
+    height: 200px;  
+    width: 300px;  
+} 
+/*页面跳转  */
+/** 修改默认的navigator点击态 **/
+.navigator-hover {
+    color:blue;
+}
+/** 自定义其他点击态样式类 **/
+.other-navigator-hover {
+    color:red;
+}

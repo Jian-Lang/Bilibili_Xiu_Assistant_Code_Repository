@@ -1,0 +1,8 @@
+/* pages/houduanTab/houduanTab.wxss */
+.h1{
+  font-size-adjust: 200px;
+}
+
+.houduanTab_input{
+  border-color:red;
+}

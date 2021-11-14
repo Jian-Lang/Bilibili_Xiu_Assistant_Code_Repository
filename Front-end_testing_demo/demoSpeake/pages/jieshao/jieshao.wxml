@@ -1,0 +1,4 @@
+<!--pages/jiezhao/jieshao.wxml-->
+<text>pages/jiezhao/jieshao.wxml</text>
+
+<text>{{text1}}</text>

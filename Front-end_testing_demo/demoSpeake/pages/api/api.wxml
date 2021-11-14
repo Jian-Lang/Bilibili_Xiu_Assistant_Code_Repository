@@ -1,0 +1,13 @@
+<!--pages/api/api.wxml-->
+<view>主要针对js逻辑层和一些常用的api介绍</view>
+
+<block wx:for="{{apiList}}">
+  <view class="book-meta">
+    <view class="meta-info">
+      <navigator url="../apijieshao/apijieshao?id={{item.id}}">属性：{{item.name}}</navigator>
+      <text class="other-meta">类型：{{item.type}}</text>
+      <text class="other-meta">描述：{{item.dis}}</text>
+    </view>
+  </view>
+</block>
+

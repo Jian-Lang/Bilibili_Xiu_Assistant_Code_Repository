@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<view bindtap="goHome" class="warp">
+  <image src="../imgs/background.jpg"></image>
+  <view class="container">
+    <!-- <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view> -->
+
+    <button open-type="getUserInfo" bindgetuserinfo="get1"> 1 微信开发介绍 </button>
+
+    <button open-type="getUserInfo" bindgetuserinfo="get2"> 2 微信小程序各种组件 </button>
+    
+    <button open-type="getUserInfo" bindgetuserinfo="get3"> 3 框架及api </button>
+
+    <button open-type="getUserInfo" bindgetuserinfo="get4"> 4 微信小程序后端设计 </button>
+  </view>
+</view>

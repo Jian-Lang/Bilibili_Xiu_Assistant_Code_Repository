@@ -1,0 +1,17 @@
+<!--pages/houduanTab/houduanTab.wxml-->
+<view class="h1">快速入门后端开发</view>
+<view>后端框架搭建和实现前后端通信</view>
+<view>
+  <text>涉及内容：Springboot 外网映射 微信机器人自动回复</text>
+  <button bindtap='houduanButton1'>点击发起请求</button>
+
+  <view wx:for="{{list}}">
+    姓名：{{item}}
+  </view>
+  <text>#########################################</text>
+  <input type="text" class="houduanTab_input" placeholder="请输入你要查询的内容" bindinput='houduanTab_input'></input>
+  <button bindtap='houduanButton2'>查询</button>
+  <view wx:if="{{message!=''}}">
+    {{message}}
+  </view>
+</view>

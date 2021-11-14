@@ -1,0 +1,73 @@
+<!--pages/apijieshao/apijieshao.wxml-->
+<!-- <text>pages/apijieshao/apijieshao.wxml</text> -->
+
+<!-- <view>{{id}}</view> -->
+<block>
+  <view wx:if="{{id==1}}">data初始化数据
+    <view>初始化数据将作为页面的第一次渲染。data 将会以 JSON 的形式由逻辑层传至渲染层，所以其数据必须是可以转成 JSON 的 格式：字符串，数字，布尔值，对象，数组。
+    </view>
+    <textarea>示例代码： Page({ data: { text: 'init data', array: [{msg: '1'}, {msg: '2'}] } }) </textarea>
+  </view>
+
+  <view wx:elif="{{id==2}}">onLoad生命周期函数
+    <view>onLoad: 页面加载 一个页面只会调用一次。 参数可以获取wx.navigateTo和wx.redirectTo及navigator/中的query。
+    </view>
+  </view>
+
+
+  <view wx:elif="{{id==3}}">onReady
+    <view>onReady: 页面初次渲染完成 一个页面只会调用一次，代表页面已经准备妥当，可以和视图层进行交互。 对界面的设置如wx.setNavigationBarTitle请在onReady之后设置。详见生命周期
+    </view>
+  </view>
+
+
+  <view wx:elif="{{id==4}}">onShow
+    <view>onShow: 页面显示 每次打开页面都会调用一次。
+    </view>
+  </view>
+
+
+  <view wx:elif="{{id==5}}">onHide
+    <view>onHide: 页面隐藏 当navigateTo或底部tab切换时调用。
+    </view>
+  </view>
+
+
+  <view wx:elif="{{id==6}}">onUnload
+    <view>onUnload: 页面卸载 当redirectTo或navigateBack的时候调用。
+    </view>
+  </view>
+
+
+  <view wx:elif="{{id==7}}">onPullDownRefresh
+    <view>页面相关事件处理函数</view>
+    <view>onPullDownRefresh: 下拉刷新 监听用户下拉刷新事件。 需要在config的window选项中开启enablePullDownRefresh。 当处理完数据刷新后，wx.stopPullDownRefresh可以停止当前页面的下拉刷新。
+    </view>
+  </view>
+  <view wx:elif="{{id==8}}">onReachBottom
+    <view>监听用户上拉触底事件。</view>
+    <view>可以在app.json的window选项中或页面配置中设置触发距离onReachBottomDistance。</view>
+    <view>在触发距离内滑动期间，本事件只会被触发一次。</view>
+  </view>
+
+
+  <view wx:elif="{{id==9}}">onShareMessage
+  </view>
+
+
+  <view wx:elif="{{id==10}}">
+      <view>我们先了解微信API的结构：</view>
+      <image src='../imgs/005.png'></image>
+      <view>一般情况下肯定是wx.request使用的最多，下面使用一个例子介绍wx.request使用方法</view>
+      <button bindtap='apiButton'>测试wx.request</button>
+  </view>
+
+
+  <view wx:else>
+    <text>请求有点问题，请重试</text>
+  </view>
+</block>
+
+<!-- <view>wx:ifvshidden 因为wx:if之中的模板也可能包含数据绑定，所以当wx:if的条件值切换时，框架有一个局部渲染的过程，因为它会确保条件块在切换时销毁或重新渲染。 同时wx:if也是惰性的，如果在初始渲染条件为false，框架什么也不做，在条件第一次变成真的时候才开始局部渲染。 相比之下，hidden就简单的多，组件始终会被渲染，只是简单的控制显示与隐藏。 一般来说，wx:if有更高的切换消耗而hidden有更高的初始渲染消耗。因此，如果需要频繁切换的情景下，用hidden更好，如果在运行时条件不大可能改变则wx:if较好。
+
+</view> -->

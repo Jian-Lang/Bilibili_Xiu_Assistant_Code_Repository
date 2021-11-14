@@ -1,0 +1,29 @@
+<!--pages/houduan/houduan.wxml-->
+<block>
+  <view class="book-meta">
+    <view class="meta-info">
+    <view>
+      <navigator url="">一、写在前面</navigator>
+      <text class="other-meta">最近接触了小程序的开发，后端选择Java，因为小程序的代码运行在腾讯的服务器上，而我们自己编写的Java代码运行在我们自己部署的服务器上，所以一开始不是很明白小程序如何与后台进行通信的，然后查找资料发现结合了官方提供的api后好像和我们普通的web前后端通信也没有多大的区别，有想法后就写了这个测试程序。</text>
+      </view>
+    </view>
+    <view>
+      <navigator url="">二、API文档</navigator>
+      <text class="other-meta">wx.request(OBJECT)前面就已经详细介绍了该api</text>
+    </view>
+    <view>
+      <navigator url="">三、基本思路
+      </navigator>
+      <text class="other-meta">将数据通过get或者其他方式传到自己写的后端api，
+      api得到微信小程序的请求数据打印出来并返回一个数据
+      （json）给微信小程序，从而实现一个最简单的前
+      后端通信。</text>
+    </view>
+    <view>
+      <navigator url="">四、关键代码
+      </navigator>
+      <text class="other-meta">结合图片详细解释前后端通信</text>
+      <image src="../imgs/006.png"></image>
+    </view>
+  </view>
+</block>

@@ -1,0 +1,3 @@
+<!--pages/navigate/navigate.wxml-->
+<text>pages/navigate/navigate.wxml</text>
+<view>跳过来了，携带的title：{{title}}</view>

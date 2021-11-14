@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/zujian/zujian",
+    "pages/jieshao/jieshao",
+    "pages/navigate/navigate",
+    "pages/api/api",
+    "pages/apijieshao/apijieshao",
+    "pages/apiButton/apiButton",
+    "pages/houduan/houduan",
+    "pages/houduanTab/houduanTab"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "前端",
+        "iconPath": "pages/imgs/qianduan1.png",
+        "selectedIconPath": "pages/imgs/qianduan2.png"
+      },
+      {
+        "pagePath": "pages/houduanTab/houduanTab",
+        "text": "后端",
+        "iconPath": "pages/imgs/houduan1.png",
+        "selectedIconPath": "pages/imgs/houduan2.png"
+      }
+    ]
+  }
+}

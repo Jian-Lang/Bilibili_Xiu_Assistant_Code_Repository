@@ -1,0 +1,94 @@
+<!--pages/zujian/zujian.wxml-->
+<text></text>
+<view>1 视图层</view>
+<text>框架的视图层由WXML与WXSS编写。其中WXML（WeiXin Markup language）用来描述页面的结构，其实就是页面中的组件的结构，其文件是.wxml；WXSS（WeiXin Style Sheet）用于描述页面的样式，其实就是每个组件的样式、属性的设置，其文件是.wxss。
+</text>
+<text>--------------------------------------------</text>
+<view>2 视图容器</view>
+<view>2.1 view</view>
+<view class="table">
+  <view class="tr bg-w">
+    <view class="th">属性</view>
+    <view class="th">类型</view>
+    <view class="th ">默认值</view>
+    <view class="th ">说明</view>
+  </view>
+  <!-- <block wx:for="{{listData}}" wx:key="{{code}}"> -->
+  <view class="tr bg-g">
+    <view class="td">hover-class</view>
+    <view class="td">String</view>
+    <view class="td">none</view>
+    <view class="td">没有点击态效果</view>
+  </view>
+  <view class="tr">
+    <view class="td">hover-stop-propagation</view>
+    <view class="td">Boolean</view>
+    <view class="td">false</view>
+    <view class="td">是否阻止本节点的祖先节点出现点击态</view>
+  </view>
+  <view class="tr bg-g">
+    <view class="td">hover-start-time</view>
+    <view class="td">Number</view>
+    <view class="td">50</view>
+    <view class="td">按住后多久出现点击态，单位毫秒</view>
+  </view>
+  <view class="tr">
+    <view class="td">hover-stay-time</view>
+    <view class="td">Number</view>
+    <view class="td">400</view>
+    <view class="td">手指松开后点击态保留时间，单位毫秒</view>
+  </view>
+</view>
+<text>--------------------------------------------</text>
+<view>2.2 scroll-view可滚动视图区域</view>
+<view>2.3 swiper滑块视图容器</view>
+<text>用一个轮番图例子来介绍</text>
+<view class="container">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" width="355" height="150" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view>--------------------------------------------</view>
+<view>
+  <view>3 基础内容</view>
+  <view>3.1 icon图标</view>
+  <view>3.2 text文本</view>
+  <view>3.3 rich-text富文本</view>
+  <view>3.4 progress进度条</view>
+</view>
+<view>--------------------------------------------</view>
+<view>
+  <view>4 表单组件</view>
+  <view>4.1 button按钮</view>
+  <view>4.2 checkbox多选框</view>
+  <view>4.3 form表单</view>
+  <view>4.4 input输入框</view>
+  <view>4.5 label用来改进表单组件的可用性</view>
+  <view>4.6 picker从底部弹起的滚动选择器</view>
+  <text>支持五种选择器，通过mode来区分，分别是普通选择器，多列选择器，时间选择器，日期选择器，省市区选择器，默认是普通选择器。</text>
+  <view>4.7 picker-view嵌入页面的滚动选择器</view>
+  <view>4.8 radio-group单项选择器，内部由多个
+    <radio/>组成</view>
+  <view>4.9 slider滑动选择器</view>
+  <view>4.10 switch开关选择器</view>
+  <view>4.11 textarea多行输入框</view>
+</view>
+<view>--------------------------------------------</view>
+<view>
+  <view>5 页面链接navigator</view>
+
+  <view class="btn-area">
+    <navigator url="/pages/navigate/navigate?title=我被带过？" hover-class="navigator-hover">跳转到新页面</navigator>
+    <navigator url="/pages/navigate/navigate?title=我被带过来了吗" open-type="redirect" hover-class="other-navigator-hover">在当前页打开</navigator>
+    <navigator url="/pages/houduanTab/houduanTab" open-type="switchTab" hover-class="other-navigator-hover">切换 Tab</navigator>
+  </view>
+</view>
+<view>--------------------------------------------</view>
+<view>
+  <view>6 媒体组件image</view>
+  <image src='../imgs/004.jpg'></image>
+</view>

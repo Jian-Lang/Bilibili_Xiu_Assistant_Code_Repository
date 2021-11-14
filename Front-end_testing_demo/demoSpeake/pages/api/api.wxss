@@ -1,0 +1,24 @@
+/* pages/api/api.wxss */
+page {
+    background: #EEE;
+}
+.book-meta {
+    position: relative;
+    padding: 20rpx;
+    overflow: hidden;
+}
+.book-meta .meta-info {
+    margin-right: 200rpx;
+}
+.meta-info text {
+    display: block
+}
+.book-title {
+    font-weight: bold;
+    font-size: 40rpx;
+}
+.other-meta {
+    padding-top: 10rpx;
+    color: #888;
+    font-size: 30rpx;
+}
