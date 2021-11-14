@@ -1,0 +1,52 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/start/start",
+			"style": {
+				"navigationBarTitleText": "哔哩哔哩_咻管家",
+				"enablePullDownRefresh": true,
+				"backgroundColor":"#333333",
+				"backgroundTextStyle":"light"
+			}
+		},
+		{
+			"path":"pages/login/login"
+		},
+		{
+			"path":"pages/search/search"
+		},
+		{
+			"path":"pages/xiu_friends/xiu_friends"
+		},
+		{
+			"path":"pages/mine/mine"
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar":{
+		"color":"#999999",
+		"selectedColor":"#f27498",
+		"list":[
+			{"pagePath":"pages/search/search",
+			"iconPath":"static/search.png",
+			"text":"搜索",
+			"selectedIconPath":"static/search.png"
+			},
+			{"pagePath":"pages/xiu_friends/xiu_friends",
+			"iconPath":"static/friends.png",
+			"text":"咻友",
+			"selectedIconPath":"static/friends.png"
+			},
+			{"pagePath":"pages/mine/mine",
+			"iconPath":"static/mine.png",
+			"text":"我的",
+			"selectedIconPath":"static/mine.png"
+			}
+		]
+	}
+}
