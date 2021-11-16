@@ -1,35 +1,46 @@
 <template>
 		<view>
 			<view class = "slogan">
-				<image src="../../static/logo.png" mode="widthFix"></image>
+				<image src="../../static/Protrait.png" mode="widthFix"></image>
 			</view>
-			<view class="cu-form-group">
-				<view class="title">昵称:</view>
-				<input type="text" placeholder="请输入文明昵称..." name="userName" 
-				@input="userNameInput" 
-				confirm-type="done" confirm-hold="true" placeholder-style="color:#000000"></input>
-			</view>
-			<view class="cu-form-group">
-				<view class="title">密码:</view>
-				<input type="text" placeholder="请输入密码..." name="passWord" 
-				confirm-type="done" confirm-hold="true" @input="userPasswordInput" placeholder-style="color:#000000"></input> 
+			<form>
+				<view class="cu-form-group">
+					<view class="title">昵称:</view>
+					<input type="text" placeholder="请输入文明昵称..." name="userName" 
+					@input="userNameInput" confirm-type="done" confirm-hold="true" placeholder-style="color:#000000" v-model="inputName"></input>
+				</view>
+				<view class="cu-form-group">
+					<view class="title">密码:</view>
+					<input type="text" placeholder="请输入密码..." name="passWord" 
+					confirm-type="done" confirm-hold="true" @input="userPasswordInput" placeholder-style="color:#000000" v-model="inputPwd"></input> 
+				</view>
+				<view class="cu-form-group">
+					<view class="title">Uid:</view>
+					<input type="text" placeholder="请输入B站Uid..." name="UID" 
+					@input="UIDInput" confirm-type="done" confirm-hold="true" placeholder-style="color:#000000" v-model="inputUID"></input>
+				</view>
+			</form>
+			<view class="padding">
+				<button class="cu-btn block bg-blue margin-tb-sm lg" size="mini" @click="subBtn_regis()" :disabled="hasPwd||isAble||hasUid" form-type="submit">
+					<text v-if="loadFlag" class="cuIcon-loading2 cuIconfont-spin"></text>确认注册
+			   </button>
 			</view>
 			<view class="padding">
-				<button class="cu-btn block bg-blue margin-tb-sm lg" @click="subBtn_login()" :disabled="hasPwd||isAble" size="mini" >
-					<text v-if="loadFlag" class="cuIcon-loading2 cuIconfont-spin"></text>登录咻管家
+				<button class="cu-btn block bg-blue margin-tb-sm lg" @click="goToNextPage()"  size="mini" >
+					<text v-if="loadFlag" class="cuIcon-loading2 cuIconfont-spin"></text>返回登录
 				</button>
 			</view>
-			<view class="padding"><button class="cu-btn block bg-blue margin-tb-sm lg" size="mini" @click="goToNextPage()"><text v-if="loadFlag" class="cuIcon-loading2 cuIconfont-spin"></text>新用户注册</button></view>
-		
 		</view>
 </template>
 
 <script>
-	import BackgroundImage from "@/static/pic1.jpg"
 	export default{
 		data(){
 			return{
 				// userPwdInp:  '',
+				inputPwd:'',
+				inputUID:'',
+				inputName:'',
 				UidLen:'',
 				hasUid: true,
 				userPwdLen: '',
@@ -73,25 +84,30 @@
 					this.hasUid = true;
 				}
 			},
-			subBtn_login(e){
+			subBtn_regis(e){
+				this.inputPwd = '',
+				this.inputUID = '',
+				this.inputName = '',
 				this.loadFlag = true,
 				this.isAble = true,
-				this.hasPwd = true
+				this.hasPwd = true,
+				this.hasUid = true
 				var $this = this;
 				setTimeout(function(){
 					uni.showToast({
-						title: "登录成功!"
+						title: "注册成功!"
 					});
 					$this.loadFlag = false
 					$this.isAble = false
 					$this.hasPwd = false
+					$this.hasUid = false
 				},500)
 			},
 			goToNextPage(){
-			uni.navigateTo({
-			            url: '../Register/Register',
-			        });
-		}
+				uni.navigateTo({
+					url:'../login/login'
+				})
+		},
 		}
 	}
 </script>

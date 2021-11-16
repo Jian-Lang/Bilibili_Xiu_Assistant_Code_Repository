@@ -4,7 +4,8 @@
     "pages/login/login",
     "pages/search/search",
     "pages/xiu_friends/xiu_friends",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/Register/Register"
   ],
   "subPackages": [],
   "window": {
@@ -38,5 +39,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap24.json"
+  "sitemapLocation": "sitemap13.json"
 }
