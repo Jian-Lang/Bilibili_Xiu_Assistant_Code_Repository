@@ -156,7 +156,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var _pic = _interopRequireDefault(__webpack_require__(/*! @/static/pic1.jpg */ 26));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
@@ -182,10 +181,26 @@ var _pic = _interopRequireDefault(__webpack_require__(/*! @/static/pic1.jpg */ 2
 //
 //
 //
-//
 var _default = { data: function data() {return { // userPwdInp:  '',
-      UidLen: '', hasUid: true, userPwdLen: '', hasPwd: true, userNameInp: '', userNameLen: '', loadFlag: false, isAble: true };}, onLoad: function onLoad() {//加载生命周期
-  }, methods: { userNameInput: function userNameInput(e) {this.userNameInp = e.target.value;this.userNameLen = e.target.cursor;if (this.userNameLen > 0) {this.isAble = false;} else {this.isAble = true;}}, userPasswordInput: function userPasswordInput(e) {
+      user_nickname: '', user_password: '', UidLen: '', hasUid: true, userPwdLen: '', hasPwd: true, userNameInp: '', userNameLen: '', loadFlag: false, isAble: true };}, onLoad: function onLoad() {//加载页面时调用，但在多个Tabbar中切换时，不会调用OnLoad()
+  }, onShow: function onShow() {}, onPullDownRefresh: function onPullDownRefresh() {var _this = this; //JS 中定义匿名函数(箭头函数)类似于Java、c中的lambda表达式,无需完整格式定义函数
+    setTimeout(function () {_this.loadFlag = true, _this.isAble = true, _this.hasPwd = true;
+      _this.user_nickname = '';
+      _this.user_password = '';
+      uni.stopPullDownRefresh();
+    }, 300);
+  },
+  methods: {
+    userNameInput: function userNameInput(e) {
+      this.userNameInp = e.target.value;
+      this.userNameLen = e.target.cursor;
+      if (this.userNameLen > 0) {
+        this.isAble = false;
+      } else {
+        this.isAble = true;
+      }
+    },
+    userPasswordInput: function userPasswordInput(e) {
       // this.userPwdInp = e.target.value;
       this.userPwdLen = e.target.cursor;
       if (this.userPwdLen > 0) {
@@ -209,14 +224,13 @@ var _default = { data: function data() {return { // userPwdInp:  '',
       this.loadFlag = true,
       this.isAble = true,
       this.hasPwd = true;
-      var $this = this;
       setTimeout(function () {
         uni.showToast({
           title: "登录成功!" });
 
-        $this.loadFlag = false;
-        $this.isAble = false;
-        $this.hasPwd = false;
+        this.loadFlag = true;
+        this.isAble = true;
+        this.hasPwd = true;
       }, 500);
     },
     goToNextPage: function goToNextPage() {

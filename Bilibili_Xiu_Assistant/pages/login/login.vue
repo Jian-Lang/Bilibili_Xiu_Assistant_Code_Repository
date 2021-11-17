@@ -5,13 +5,12 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">昵称:</view>
-				<input type="text" placeholder="请输入文明昵称..." name="userName" 
-				@input="userNameInput" 
-				confirm-type="done" confirm-hold="true" placeholder-style="color:#000000"></input>
+				<input type="text" placeholder="请输入文明昵称..." name="userName" v-model="user_nickname"
+				@input="userNameInput" confirm-type="done" confirm-hold="true" placeholder-style="color:#000000"></input>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">密码:</view>
-				<input type="text" placeholder="请输入密码..." name="passWord" 
+				<input type="text" placeholder="请输入密码..." name="passWord" v-model="user_password"
 				confirm-type="done" confirm-hold="true" @input="userPasswordInput" placeholder-style="color:#000000"></input> 
 			</view>
 			<view class="padding">
@@ -30,6 +29,8 @@
 		data(){
 			return{
 				// userPwdInp:  '',
+				user_nickname:'',
+				user_password:'',
 				UidLen:'',
 				hasUid: true,
 				userPwdLen: '',
@@ -41,7 +42,21 @@
 			}
 		},
 		onLoad(){
-			//加载生命周期
+			//加载页面时调用，但在多个Tabbar中切换时，不会调用OnLoad()
+		},
+		onShow() {
+			
+		},
+		onPullDownRefresh() {
+			//JS 中定义匿名函数(箭头函数)类似于Java、c中的lambda表达式,无需完整格式定义函数
+			setTimeout(()=>{
+				this.loadFlag = true,
+				this.isAble = true,
+				this.hasPwd = true
+				this.user_nickname = '';
+				this.user_password = '';
+				uni.stopPullDownRefresh()
+			},300)
 		},
 		methods:{
 			userNameInput(e){
@@ -77,20 +92,19 @@
 				this.loadFlag = true,
 				this.isAble = true,
 				this.hasPwd = true
-				var $this = this;
 				setTimeout(function(){
 					uni.showToast({
 						title: "登录成功!"
 					});
-					$this.loadFlag = false
-					$this.isAble = false
-					$this.hasPwd = false
+					this.loadFlag = true
+					this.isAble = true
+					this.hasPwd = true
 				},500)
 			},
 			goToNextPage(){
-			uni.navigateTo({
+				uni.navigateTo({
 			            url: '../Register/Register',
-			        });
+						});
 		}
 		}
 	}

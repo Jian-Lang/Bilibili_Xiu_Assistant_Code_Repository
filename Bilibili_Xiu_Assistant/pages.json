@@ -10,7 +10,12 @@
 			}
 		},
 		{
-			"path":"pages/login/login"
+			"path":"pages/login/login",
+			"style":{
+				"enablePullDownRefresh": true,
+				"backgroundColor":"#333333",
+				"backgroundTextStyle":"light"
+			}
 		},
 		{
 			"path":"pages/search/search"
@@ -22,7 +27,12 @@
 			"path":"pages/mine/mine"
 		},
 		{
-			"path":"pages/Register/Register"
+			"path":"pages/Register/Register",
+			"style":{
+				"enablePullDownRefresh": true,
+				"backgroundColor":"#333333",
+				"backgroundTextStyle":"light"
+			}
 		}
 	],
 	"globalStyle": {

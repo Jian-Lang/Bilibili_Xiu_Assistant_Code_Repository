@@ -183,6 +183,18 @@ var _default =
       isAble: true };
 
   },
+  onPullDownRefresh: function onPullDownRefresh() {var _this = this;
+    setTimeout(function () {
+      _this.loadFlag = true;
+      _this.isAble = true;
+      _this.hasPwd = true;
+      _this.hasUid = true;
+      _this.inputName = '';
+      _this.inputPwd = '';
+      _this.inputUID = '';
+      uni.stopPullDownRefresh();
+    }, 300);
+  },
   onLoad: function onLoad() {
     //加载生命周期
   },
@@ -216,7 +228,7 @@ var _default =
         this.hasUid = true;
       }
     },
-    subBtn_regis: function subBtn_regis(e) {
+    subBtn_regis: function subBtn_regis(e) {var _this2 = this;
       this.inputPwd = '',
       this.inputUID = '',
       this.inputName = '',
@@ -224,16 +236,15 @@ var _default =
       this.isAble = true,
       this.hasPwd = true,
       this.hasUid = true;
-      var $this = this;
       setTimeout(function () {
         uni.showToast({
           title: "注册成功!" });
 
-        $this.loadFlag = false;
-        $this.isAble = false;
-        $this.hasPwd = false;
-        $this.hasUid = false;
-      }, 500);
+        _this2.loadFlag = true;
+        _this2.isAble = true;
+        _this2.hasPwd = true;
+        _this2.hasUid = true;
+      }, 1000);
     },
     goToNextPage: function goToNextPage() {
       uni.navigateTo({

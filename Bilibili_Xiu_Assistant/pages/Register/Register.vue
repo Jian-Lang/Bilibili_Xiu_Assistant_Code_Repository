@@ -51,6 +51,18 @@
 				isAble : true,
 			}
 		},
+		onPullDownRefresh() {
+			setTimeout(()=>{
+				this.loadFlag = true
+				this.isAble = true
+				this.hasPwd = true
+				this.hasUid = true
+				this.inputName = '';
+				this.inputPwd = '';
+				this.inputUID = '';
+				uni.stopPullDownRefresh()
+			},300)
+		},
 		onLoad(){
 			//加载生命周期
 		},
@@ -92,16 +104,15 @@
 				this.isAble = true,
 				this.hasPwd = true,
 				this.hasUid = true
-				var $this = this;
-				setTimeout(function(){
+				setTimeout(()=>{
 					uni.showToast({
 						title: "注册成功!"
 					});
-					$this.loadFlag = false
-					$this.isAble = false
-					$this.hasPwd = false
-					$this.hasUid = false
-				},500)
+					this.loadFlag = true
+					this.isAble = true
+					this.hasPwd = true
+					this.hasUid = true
+				},1000)
 			},
 			goToNextPage(){
 				uni.navigateTo({
