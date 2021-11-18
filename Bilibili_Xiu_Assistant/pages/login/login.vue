@@ -1,20 +1,21 @@
 <template>
+				<!-- vue JS-JQuery + wechat-wxml + H5-Css -->
 		<view>
 			<view class = "slogan">
 				<image src="../../static/logo.png" mode="widthFix"></image>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">昵称:</view>
-				<input type="text" placeholder="请输入文明昵称..." name="userName" v-model="user_nickname"
+				<input type="text" placeholder="请输入昵称..." name="userName" v-model="input_nickname"
 				@input="userNameInput" confirm-type="done" confirm-hold="true" placeholder-style="color:#000000"></input>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">密码:</view>
-				<input type="text" placeholder="请输入密码..." name="passWord" v-model="user_password"
+				<input type="text" placeholder="请输入密码..." name="passWord" v-model="input_password"
 				confirm-type="done" confirm-hold="true" @input="userPasswordInput" placeholder-style="color:#000000"></input> 
 			</view>
 			<view class="padding">
-				<button class="cu-btn block bg-blue margin-tb-sm lg" @click="subBtn_login()" :disabled="hasPwd||isAble" size="mini" >
+				<button class="cu-btn block bg-blue margin-tb-sm lg" @click="subBtn_login()" :disabled="hasPwd||hasName" size="mini" >
 					<text v-if="loadFlag" class="cuIcon-loading2 cuIconfont-spin"></text>登录咻管家
 				</button>
 			</view>
@@ -28,17 +29,25 @@
 	export default{
 		data(){
 			return{
-				// userPwdInp:  '',
-				user_nickname:'',
-				user_password:'',
-				UidLen:'',
-				hasUid: true,
+				//v-model绑定表单内的数据，用于刷新表单输入框
+				input_nickname:'',
+				input_password:'',
+				//判定用户是否已经输入昵称和密码
 				userPwdLen: '',
 				hasPwd: true,
-				userNameInp : '',
 				userNameLen : '',
-				loadFlag : false,
-				isAble : true,
+				hasName : true,
+			    loadFlag : false,
+				//获取用户的用户名和密码，并放置于本地缓存（后端比对）,
+				//缓存的Key值是'username_log' 'password_log'
+				username_log: '',
+				password_log: '',
+				//向后端传递的用户名和密码
+				Uname:'',
+				Upassword:'',
+				//接收后端的数据
+				Code:'',
+				message:''
 			}
 		},
 		onLoad(){
@@ -51,26 +60,28 @@
 			//JS 中定义匿名函数(箭头函数)类似于Java、c中的lambda表达式,无需完整格式定义函数
 			setTimeout(()=>{
 				this.loadFlag = true,
-				this.isAble = true,
+				this.hasName = true,
 				this.hasPwd = true
-				this.user_nickname = '';
-				this.user_password = '';
+				this.input_nickname = '';
+				this.input_password = '';
 				uni.stopPullDownRefresh()
 			},300)
 		},
 		methods:{
 			userNameInput(e){
-				this.userNameInp = e.target.value;
 				this.userNameLen = e.target.cursor;
+				this.username_log = e.target.value;
+				uni.setStorageSync('username_log',this.username_log);
 				if(this.userNameLen > 0){
-					this.isAble = false
+					this.hasName = false
 				}else{
-					this.isAble = true
+					this.hasName = true
 				}
 			},
 			userPasswordInput(e){
-				// this.userPwdInp = e.target.value;
 				this.userPwdLen = e.target.cursor;
+				this.password_log = e.target.value;
+				uni.setStorageSync('password_log',this.password_log);
 				if(this.userPwdLen > 0){
 					this.hasPwd = false;
 				}
@@ -78,36 +89,40 @@
 					this.hasPwd = true;
 				}
 			},
-			UIDInput(e){
-				// this.userPwdInp = e.target.value;
-				this.UidLen = e.target.cursor;
-				if(this.UidLen > 0){
-					this.hasUid = false;
-				}
-				else{
-					this.hasUid = true;
-				}
-			},
 			subBtn_login(e){
-				this.loadFlag = true,
-				this.isAble = true,
-				this.hasPwd = true
-				setTimeout(function(){
-					uni.showToast({
-						title: "登录成功!"
-					});
-					this.loadFlag = true
-					this.isAble = true
-					this.hasPwd = true
-				},500)
+				this.Uname = uni.getStorageSync('username_log')
+				this.Upassword = uni.getStorageSync('password_log')
+				uni.request({
+					url: "http://47.113.196.102:5000/login",
+					method:"POST",
+					header: {
+					  'content-type': 'application/x-www-form-urlencoded' //后端接收的是（表单）字符串类型，例如'id=1231454&sex=男'
+					 },
+					data:{username: this.Uname, password: this.Upassword},
+					success: (res) => {	
+						this.message = JSON.stringify(res.data.message)
+						this.Code = JSON.stringify(res.data.status)
+						if(this.Code == 200){
+							uni.switchTab({
+								url: "../search/search"
+							})
+						}
+						if(this.Code == 400){
+							uni.showToast({
+									title: this.message
+								});
+							}
+						}
+					})
+				},
+				goToNextPage(){
+						uni.navigateTo({
+					            url: '../Register/Register',
+								});
+				}
 			},
-			goToNextPage(){
-				uni.navigateTo({
-			            url: '../Register/Register',
-						});
 		}
-		}
-	}
+	
 </script>
 
 <style lang="scss">

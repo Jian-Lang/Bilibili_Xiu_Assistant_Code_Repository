@@ -6,12 +6,12 @@
 			<form>
 				<view class="cu-form-group">
 					<view class="title">昵称:</view>
-					<input type="text" placeholder="请输入文明昵称..." name="userName" 
+					<input type="text" placeholder="请输入16位以内的昵称..." name="userName" 
 					@input="userNameInput" confirm-type="done" confirm-hold="true" placeholder-style="color:#000000" v-model="inputName"></input>
 				</view>
 				<view class="cu-form-group">
 					<view class="title">密码:</view>
-					<input type="text" placeholder="请输入密码..." name="passWord" 
+					<input type="text" placeholder="请输入8-12位的密码..." name="passWord" 
 					confirm-type="done" confirm-hold="true" @input="userPasswordInput" placeholder-style="color:#000000" v-model="inputPwd"></input> 
 				</view>
 				<view class="cu-form-group">
@@ -21,7 +21,7 @@
 				</view>
 			</form>
 			<view class="padding">
-				<button class="cu-btn block bg-blue margin-tb-sm lg" size="mini" @click="subBtn_regis()" :disabled="hasPwd||isAble||hasUid" form-type="submit">
+				<button class="cu-btn block bg-blue margin-tb-sm lg" size="mini" @click="subBtn_regis()" :disabled="hasPwd||hasName||hasUid" form-type="submit">
 					<text v-if="loadFlag" class="cuIcon-loading2 cuIconfont-spin"></text>确认注册
 			   </button>
 			</view>
@@ -37,24 +37,35 @@
 	export default{
 		data(){
 			return{
-				// userPwdInp:  '',
+				//绑定表单内的数据，用于刷新表单输入框
 				inputPwd:'',
 				inputUID:'',
 				inputName:'',
+				//判定用户是否已经输入昵称、密码和UID
 				UidLen:'',
 				hasUid: true,
 				userPwdLen: '',
 				hasPwd: true,
-				userNameInp : '',
-				userNameLen : '',
+				userNameLen : '',	
+				hasName : true,
 				loadFlag : false,
-				isAble : true,
+				//获取用户的账号、密码和UID信息，并传给后端
+				username_res: '',
+				password_res: '',
+				uid_res: '',
+				//向后端传递的用户名和密码
+				Uname:'',
+				Upassword:'',
+				Uuid: '',
+				//从后端获取的数据
+				message:'',
+				Code:'',
 			}
 		},
 		onPullDownRefresh() {
 			setTimeout(()=>{
 				this.loadFlag = true
-				this.isAble = true
+				this.hasName = true
 				this.hasPwd = true
 				this.hasUid = true
 				this.inputName = '';
@@ -68,18 +79,21 @@
 		},
 		methods:{
 			userNameInput(e){
-				this.userNameInp = e.target.value;
 				this.userNameLen = e.target.cursor;
+				this.username_res = e.target.value;
+				uni.setStorageSync('username_res',this.username_res);
 				if(this.userNameLen > 0){
-					this.isAble = false
+					this.hasName = false
 				}else{
-					this.isAble = true
+					this.hasName = true
 				}
 			},
 			userPasswordInput(e){
 				// this.userPwdInp = e.target.value;
 				this.userPwdLen = e.target.cursor;
-				if(this.userPwdLen > 0){
+				this.password_res = e.target.value;
+				uni.setStorageSync('password_res',this.password_res);
+				if(this.userPwdLen >= 8){
 					this.hasPwd = false;
 				}
 				else{
@@ -89,6 +103,8 @@
 			UIDInput(e){
 				// this.userPwdInp = e.target.value;
 				this.UidLen = e.target.cursor;
+				this.uid_res = e.target.value;
+				uni.setStorageSync('uid_res',this.uid_res);
 				if(this.UidLen > 0){
 					this.hasUid = false;
 				}
@@ -97,21 +113,39 @@
 				}
 			},
 			subBtn_regis(e){
-				this.inputPwd = '',
-				this.inputUID = '',
-				this.inputName = '',
-				this.loadFlag = true,
-				this.isAble = true,
-				this.hasPwd = true,
-				this.hasUid = true
+				this.Uname = uni.getStorageSync('username_res'),
+				this.Upassword = uni.getStorageSync('password_res'),
+				this.Uuid = uni.getStorageSync('uid_res'),
 				setTimeout(()=>{
-					uni.showToast({
-						title: "注册成功!"
-					});
-					this.loadFlag = true
-					this.isAble = true
-					this.hasPwd = true
-					this.hasUid = true
+					uni.request({
+						url:'http://47.113.196.102:5000/register',
+						method:'POST',	
+						data:{username : this.Uname, password : this.Upassword, B_UID : this.Uuid},
+						header: {
+						  'content-type': 'application/x-www-form-urlencoded' //表明后端接收的是（表单）字符串类型，例如'id=1231454&sex=男' 
+						 },
+
+						success: (res) => {
+							this.Code = JSON.stringify(res.data.status)
+							if(this.Code == 200){
+								this.inputPwd = '',
+								this.inputUID = '',
+								this.inputName = '',
+								this.loadFlag = true,
+								this.hasName = true,
+								this.hasPwd = true,
+								this.hasUid = true,
+								uni.showToast({
+									title: "注册成功!"
+								});
+							}
+							if(this.Code == 400){
+								uni.showToast({
+									title: JSON.stringify(res.data.message)
+								})
+							}
+						}
+					})
 				},1000)
 			},
 			goToNextPage(){

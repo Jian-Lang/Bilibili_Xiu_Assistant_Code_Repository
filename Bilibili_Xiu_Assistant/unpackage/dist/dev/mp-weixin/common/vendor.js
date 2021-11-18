@@ -2215,17 +2215,6 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 26:
-/*!**********************************************************************************!*\
-  !*** C:/Users/大瞎蘸酱/Desktop/Bilibili咻管家项目/Bilibili_Xiu_Assistant/static/pic1.jpg ***!
-  \**********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/static/pic1.jpg";
-
-/***/ }),
-
 /***/ 3:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
@@ -8272,6 +8261,17 @@ internalMixin(Vue);
 /* harmony default export */ __webpack_exports__["default"] = (Vue);
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 2)))
+
+/***/ }),
+
+/***/ 34:
+/*!**********************************************************************************!*\
+  !*** C:/Users/大瞎蘸酱/Desktop/Bilibili咻管家项目/Bilibili_Xiu_Assistant/static/pic1.jpg ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/static/pic1.jpg";
 
 /***/ }),
 

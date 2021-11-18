@@ -23,7 +23,14 @@
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "用户须知",
+          "query": "id=80",
+          "id": 0,
+          "pathName": "pages/user_protocol/user_protocol"
+        }
+      ]
     }
   }
 }

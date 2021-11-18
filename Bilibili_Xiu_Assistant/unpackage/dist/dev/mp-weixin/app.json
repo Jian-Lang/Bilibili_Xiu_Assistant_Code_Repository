@@ -1,11 +1,12 @@
 {
   "pages": [
     "pages/start/start",
+    "pages/Register/Register",
     "pages/login/login",
     "pages/search/search",
     "pages/xiu_friends/xiu_friends",
     "pages/mine/mine",
-    "pages/Register/Register"
+    "pages/user_protocol/user_protocol"
   ],
   "subPackages": [],
   "window": {
@@ -39,5 +40,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap54.json"
+  "sitemapLocation": "sitemap79.json"
 }

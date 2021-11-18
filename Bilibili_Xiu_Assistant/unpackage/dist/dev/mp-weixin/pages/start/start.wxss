@@ -26,8 +26,14 @@ image {
 	margin-top: 100rpx;
 	text-align: center;
 }
-text{
+.btn-f text{
 	font-size: 14px;
 	color: #FFFFFF
+}
+.protocol{
+	margin-top: 100rpx;
+	color: #FFFFFF;
+	font-size: 12px;
+	text-align: center;
 }
 
