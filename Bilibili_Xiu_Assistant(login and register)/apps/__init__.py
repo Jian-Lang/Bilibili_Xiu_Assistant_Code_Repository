@@ -2,6 +2,7 @@
 from flask import Flask
 
 from apps.apis.user_api import user_bp
+from apps.apis.search_api import information_bp
 from exits import db, cors
 from settings import DevelopmentConfig
 
@@ -13,4 +14,5 @@ def create_app():
     cors.init_app(app = app, supports_credentials = True)  # ---->跨越处理
     # 注册蓝图
     app.register_blueprint(user_bp)
+    app.register_blueprint(information_bp)
     return app

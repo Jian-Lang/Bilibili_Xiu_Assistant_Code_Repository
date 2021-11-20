@@ -7,7 +7,7 @@ class User(db.Model):
     username = db.Column(db.String(15), nullable = False)
     password = db.Column(db.String(12), nullable = False)
     B_UID = db.Column(db.String(20), nullable = False)
-    icon = db.Column(db.String(255))
+    Sign = db.Column(db.String(255))
 
     def __str__(self):
         return self.username

@@ -3,6 +3,7 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from apps.models.user_model import *
 from apps.models.following_up import *
+from apps.models.friends import *
 from apps import create_app
 from exits import db
 

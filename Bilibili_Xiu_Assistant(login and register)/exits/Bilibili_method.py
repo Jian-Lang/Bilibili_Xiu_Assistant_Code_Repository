@@ -1,6 +1,8 @@
-import requests
-import time
 import calendar
+import time
+
+import requests
+
 
 def judgeuserhasconcern(mid):
     # 判断该用户有无关注up主
@@ -9,32 +11,35 @@ def judgeuserhasconcern(mid):
     information = response.json()
     code = information['code']
     if code == 22115:
-        print('用户已设置隐私，无法查看关注列表')
-        return 1
+        return False
     number = information['data']['total']
     if number > 0:
-        return 1
+        return True
     else:
-        return 0
+        return False
+
 
 def getconcernlistUID(vmid):
     # 用于获取单个用户的关注的UID
-    api = 'https://api.bilibili.com/x/relation/followings?vmid=%s'%vmid
+    api = 'https://api.bilibili.com/x/relation/followings?vmid=%s' % vmid
     response1 = requests.get(api)
     user_concern_list_dict = response1.json()
     code = user_concern_list_dict['code']
     if code == 22115:
-        print('用户已设置隐私，无法查看关注列表')
-        return 0
+        return {
+            'status': 400,
+            'message': '用户设置隐私'
+        }
     concernlist = []
     for n in range(0, len(user_concern_list_dict['data']['list'])):
         name = user_concern_list_dict['data']['list'][n]['mid']
         concernlist.append(name)
     return concernlist
 
+
 def getconcernlist(vmid):
     # 用于获取单个用户的关注
-    api = 'https://api.bilibili.com/x/relation/followings?vmid=%s'%vmid
+    api = 'https://api.bilibili.com/x/relation/followings?vmid=%s' % vmid
     response1 = requests.get(api)
     user_concern_list_dict = response1.json()
     concernlist = {}
@@ -59,10 +64,11 @@ def getconcernlist(vmid):
     concernlist['object'] = UP
     return concernlist
 
+
 def getconcernlist1(vmid_list):
     # 用来获取多个用户的关注列表
     lists = []
-    for n in range(0,len(vmid_list)):
+    for n in range(0, len(vmid_list)):
         api = 'https://api.bilibili.com/x/relation/followings?vmid=' + vmid_list[n]
         response1 = requests.get(api)
         user_concern_list_dict = response1.json()
@@ -70,7 +76,7 @@ def getconcernlist1(vmid_list):
         concernlist['user_UID'] = vmid_list[n]
         code = user_concern_list_dict['code']
         if code == 22115:
-            print('用户'+vmid_list[n]+'已设置隐私，无法查看关注列表')
+            print('用户' + vmid_list[n] + '已设置隐私，无法查看关注列表')
             lists.append(concernlist)
         else:
             concernlist['numberofconcern'] = user_concern_list_dict['data']['total']
@@ -91,46 +97,55 @@ def getconcernlist1(vmid_list):
             lists.append(concernlist)
     return lists
 
+
 def getsearchresult(keyword):
     # 显示用户搜索的结果
     api = 'https://api.bilibili.com/x/web-interface/search/type?&page=1&keyword=' + keyword + '&search_type=bili_user&order=fans'
     response2 = requests.get(api)
     search_result_dict = response2.json()
-    searchresult = {}
-    searchresult['search'] = keyword
-    user = []
-    for n in range(0, len(search_result_dict['data']['result'])):
-        name = search_result_dict['data']['result'][n]['uname']
-        face = search_result_dict['data']['result'][n]['upic']
-        if search_result_dict['data']['result'][n]['usign'] == '':
-            if search_result_dict['data']['result'][n]['official_verify']['desc'] == '':
-                information = '这个用户什么都没有留下~'
+    num = search_result_dict['data']['numResults']
+    if num == 0:
+        return {
+            'status': 400,
+            'message': '什么都没有搜到QAQ'
+        }
+    else:
+        searchresult = {}
+        searchresult['search'] = keyword
+        user = []
+        for n in range(0, len(search_result_dict['data']['result'])):
+            name = search_result_dict['data']['result'][n]['uname']
+            face = 'https:'+search_result_dict['data']['result'][n]['upic']
+            if search_result_dict['data']['result'][n]['usign'] == '':
+                if search_result_dict['data']['result'][n]['official_verify']['desc'] == '':
+                    information = '这个用户什么都没有留下~'
+                else:
+                    information = search_result_dict['data']['result'][n]['official_verify']['desc'].replace('\n', '  ')
             else:
-                information = search_result_dict['data']['result'][n]['official_verify']['desc'].replace('\n', '  ')
-        else:
-            information = search_result_dict['data']['result'][n]['usign'].replace('\n', '  ')
-        user.append({'rname':name,'rface':face,'rinformation':information})
-    searchresult['user'] = user
+                information = search_result_dict['data']['result'][n]['usign'].replace('\n', '  ')
+            user.append({'rname': name, 'rface': face, 'rinformation': information})
+        searchresult['user'] = user
     return searchresult
 
+
 def getupdatedmessage(vmid):
-    #获取某一个用户两天内的更新视频
-    api = 'https://api.bilibili.com/x/space/arc/search?pn=1&ps=100&keyword=&mid=%s'%vmid
+    # 获取某一个用户两天内的更新视频
+    api = 'https://api.bilibili.com/x/space/arc/search?pn=1&ps=100&keyword=&mid=%s' % vmid
     response3 = requests.get(api)
     videomessage = response3.json()
     updatedmessage = {}
     updatedmessage['uper_UID'] = vmid
     video = []
     counter = 0
-    now_time = calendar.timegm(time.gmtime()) #获取当前系统时间戳
-    for n in range(0,len(videomessage['data']['list']['vlist'])):
+    now_time = calendar.timegm(time.gmtime())  # 获取当前系统时间戳
+    for n in range(0, len(videomessage['data']['list']['vlist'])):
         title = videomessage['data']['list']['vlist'][n]['title']
         pic = videomessage['data']['list']['vlist'][n]['pic']
         updatetime = videomessage['data']['list']['vlist'][n]['created']
         bvid = videomessage['data']['list']['vlist'][n]['bvid']
-        if (now_time-172800) < updatetime: #减去两天的时间戳 判断是否为这两天所更新的视频
+        if (now_time - 172800) < updatetime:  # 减去两天的时间戳 判断是否为这两天所更新的视频
             video.append({'title': title, 'pic': pic, 'updatetime': updatetime, 'bvid': bvid})
-            counter+=1
+            counter += 1
         else:
             break
     updatedmessage['number of late video'] = counter
@@ -152,7 +167,7 @@ def getupdatedmessage(vmid):
 # dict = getconcernlistUID('34243853')
 # print(dict)
 
-# dict = getsearchresult('每日新闻')
+# dict = getsearchresult('awdawda')
 # print(dict)
 
 # dict = getupdatedmessage('1935882')
