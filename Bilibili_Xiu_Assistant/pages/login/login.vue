@@ -1,31 +1,29 @@
 <template>
-				<!-- vue JS-JQuery + wechat-wxml + H5-Css -->
+				<!-- vue JS + wechat-api + H5-CSS3 -->
 		<view>
 			<view class = "slogan">
 				<image src="../../static/logo.png" mode="widthFix"></image>
 			</view>
 			<view class="cu-form-group">
-				<view class="title">昵称:</view>
-				<input type="text" placeholder="请输入昵称..." name="userName" v-model="input_nickname"
-				@input="userNameInput" confirm-type="done" confirm-hold="true" placeholder-style="color:#000000"></input>
+				<view class="title"></view>
+				<input type="text" placeholder="请输入昵称..."  name="userName" v-model="input_nickname"
+				@input="userNameInput" confirm-type="done" confirm-hold="true"/>
 			</view>
 			<view class="cu-form-group">
-				<view class="title">密码:</view>
+				<view class="title"></view>
 				<input type="text" placeholder="请输入密码..." name="passWord" v-model="input_password"
-				confirm-type="done" confirm-hold="true" @input="userPasswordInput" placeholder-style="color:#000000"></input> 
+				confirm-type="done" confirm-hold="true" @input="userPasswordInput"></input> 
 			</view>
 			<view class="padding">
-				<button class="cu-btn block bg-blue margin-tb-sm lg" @click="subBtn_login()" :disabled="hasPwd||hasName" size="mini" >
+				<button @click="subBtn_login()" :disabled="hasPwd||hasName">
 					<text v-if="loadFlag" class="cuIcon-loading2 cuIconfont-spin"></text>登录咻管家
 				</button>
 			</view>
-			<view class="padding"><button class="cu-btn block bg-blue margin-tb-sm lg" size="mini" @click="goToNextPage()"><text v-if="loadFlag" class="cuIcon-loading2 cuIconfont-spin"></text>新用户注册</button></view>
+			<view class="padding"><button @click="goToNextPage()"><text v-if="loadFlag" class="cuIcon-loading2 cuIconfont-spin"></text>新用户注册</button></view>
 		
 		</view>
 </template>
-
 <script>
-	import BackgroundImage from "@/static/pic1.jpg"
 	export default{
 		data(){
 			return{
@@ -72,7 +70,7 @@
 				this.userNameLen = e.target.cursor;
 				this.username_log = e.target.value;
 				uni.setStorageSync('username_log',this.username_log);
-				if(this.userNameLen > 0){
+				if(this.userNameLen > 0 && this.userNameLen < 16){
 					this.hasName = false
 				}else{
 					this.hasName = true
@@ -82,7 +80,7 @@
 				this.userPwdLen = e.target.cursor;
 				this.password_log = e.target.value;
 				uni.setStorageSync('password_log',this.password_log);
-				if(this.userPwdLen > 0){
+				if(this.userPwdLen >= 8 && this.userPwdLen <= 12){
 					this.hasPwd = false;
 				}
 				else{
@@ -109,6 +107,7 @@
 						}
 						if(this.Code == 400){
 							uni.showToast({
+									icon: "none",
 									title: this.message
 								});
 							}
@@ -130,7 +129,18 @@
 		width:100%;
 		height: 100%;
 		background-size: 100% 100%;
-		background-image: url(https://pica.zhimg.com/80/v2-8411510fe4d28ecf4c262e3b520bd6c7_720w.jpg?source=1940ef5c);
+		// background-image: url(https://pica.zhimg.com/80/v2-8411510fe4d28ecf4c262e3b520bd6c7_720w.jpg?source=1940ef5c);
+	}
+	button{
+		 font-size: 40rpx;
+		 border-radius: 40rpx;
+		 line-height: 80rpx;
+		 width: 550rpx;
+		 height: 80rpx;
+		 font-weight: 700;
+		 color: #FFFFFF;
+		 background-color: #f27498;
+		 // border-radius:  
 	}
 	.slogan{
 		text-align: center;
@@ -152,14 +162,19 @@
 		font-size: 50rpx;
 	}
 	.padding{
-		margin-bottom: 30rpx;
+		margin-bottom: 50rpx;
 		text-align: center;
 	}
 	input{
+		font-size: 35rpx;
+		text-align: left;
+		padding-left: 30rpx;
+		border-radius: 40rpx;
+		line-height: 80rpx;
+		margin: 0 auto;
+		border: 3rpx solid #f27498;
 		width: 550rpx;
-		height: 70rpx;
-		align-items: center;
+		height: 80rpx;
 		color: #000000;
-		border-color: #000000;
 	}
 </style>

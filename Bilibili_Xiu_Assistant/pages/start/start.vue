@@ -37,7 +37,6 @@
 				        }
 				    }
 				});
-
 		},
 		goToProtocol(){
 			uni.navigateTo({
@@ -53,7 +52,7 @@
 		background-color: #000;
 	}
 	.img-f{
-		margin-top: 50rpx;
+		margin-top: 10%;
 		text-align: center;
 	}
 	image {

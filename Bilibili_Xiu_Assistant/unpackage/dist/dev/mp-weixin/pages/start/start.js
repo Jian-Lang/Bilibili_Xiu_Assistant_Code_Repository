@@ -175,7 +175,6 @@ var _default =
           }
         } });
 
-
     },
     goToProtocol: function goToProtocol() {
       uni.navigateTo({

@@ -36,6 +36,15 @@
 		},
 		{
 			"path":"pages/user_protocol/user_protocol"
+		},
+		{
+			"path":"pages/userSign/userSign"
+		},
+		{
+			"path":"pages/searchFriends/searchFriends"
+		},
+		{
+			"path":"pages/xiu_friendPage/xiu_friendPage"
 		}
 
 	],
@@ -71,7 +80,7 @@
 		"list":[
 			{
 				"name":"用户须知",
-				"path":"pages/user_protocol/user_protocol",
+				"path":"pages/mine/mine",
 				"query":"id=80"
 			}
 		]

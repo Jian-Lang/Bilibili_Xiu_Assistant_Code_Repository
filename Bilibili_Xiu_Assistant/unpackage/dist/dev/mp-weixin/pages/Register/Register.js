@@ -162,9 +162,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 var _default =
 {
   data: function data() {
@@ -191,7 +188,9 @@ var _default =
       Uuid: '',
       //从后端获取的数据
       message: '',
-      Code: '' };
+      Code: '',
+      //头像上传参数
+      imgSrc: '../../static/Protrait.png' };
 
   },
   onPullDownRefresh: function onPullDownRefresh() {var _this = this;
@@ -203,6 +202,7 @@ var _default =
       _this.inputName = '';
       _this.inputPwd = '';
       _this.inputUID = '';
+      _this.imgSrc = '../../static/Protrait.png';
       uni.stopPullDownRefresh();
     }, 300);
   },
@@ -214,7 +214,7 @@ var _default =
       this.userNameLen = e.target.cursor;
       this.username_res = e.target.value;
       uni.setStorageSync('username_res', this.username_res);
-      if (this.userNameLen > 0) {
+      if (this.userNameLen > 0 && this.userNameLen < 16) {
         this.hasName = false;
       } else {
         this.hasName = true;
@@ -225,7 +225,7 @@ var _default =
       this.userPwdLen = e.target.cursor;
       this.password_res = e.target.value;
       uni.setStorageSync('password_res', this.password_res);
-      if (this.userPwdLen >= 8) {
+      if (this.userPwdLen >= 8 && this.userPwdLen <= 12) {
         this.hasPwd = false;
       } else
       {
@@ -237,7 +237,7 @@ var _default =
       this.UidLen = e.target.cursor;
       this.uid_res = e.target.value;
       uni.setStorageSync('uid_res', this.uid_res);
-      if (this.UidLen > 0) {
+      if (this.UidLen > 0 && this.UidLen < 21) {
         this.hasUid = false;
       } else
       {
@@ -247,7 +247,7 @@ var _default =
     subBtn_regis: function subBtn_regis(e) {var _this2 = this;
       this.Uname = uni.getStorageSync('username_res'),
       this.Upassword = uni.getStorageSync('password_res'),
-      this.Uuid = uni.getStorageSync('uid_res'),
+      this.Uuid = uni.getStorageSync('uid_res');
       setTimeout(function () {
         uni.request({
           url: 'http://47.113.196.102:5000/register',
@@ -256,7 +256,6 @@ var _default =
           header: {
             'content-type': 'application/x-www-form-urlencoded' //表明后端接收的是（表单）字符串类型，例如'id=1231454&sex=男' 
           },
-
           success: function success(res) {
             _this2.Code = JSON.stringify(res.data.status);
             if (_this2.Code == 200) {
@@ -267,12 +266,22 @@ var _default =
               _this2.hasName = true,
               _this2.hasPwd = true,
               _this2.hasUid = true,
+              uni.uploadFile({
+                url: 'http://47.113.196.102:5000/uploadpic', //仅为示例，非真实的接口地址
+                filePath: _this2.imgSrc,
+                name: 'icon',
+                formData: {
+                  'username': _this2.Uname } });
+
+
+              _this2.imgSrc = '../../static/Protrait.png',
               uni.showToast({
                 title: "注册成功!" });
 
             }
             if (_this2.Code == 400) {
               uni.showToast({
+                icon: "none",
                 title: JSON.stringify(res.data.message) });
 
             }
@@ -283,6 +292,15 @@ var _default =
     goToNextPage: function goToNextPage() {
       uni.navigateTo({
         url: '../login/login' });
+
+    },
+    uploadImg: function uploadImg() {var _this3 = this;
+      uni.chooseImage({
+        count: 1,
+        success: function success(res) {
+          var tempFilePaths = res.tempFilePaths;
+          _this3.imgSrc = tempFilePaths[0];
+        } });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

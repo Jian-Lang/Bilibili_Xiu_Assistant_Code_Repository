@@ -1,32 +1,29 @@
 <template>
 		<view>
 			<view class = "slogan">
-				<image src="../../static/Protrait.png" mode="widthFix"></image>
+				<image :src="imgSrc" mode="widthFix" @click="uploadImg"></image>
 			</view>
 			<form>
 				<view class="cu-form-group">
-					<view class="title">昵称:</view>
-					<input type="text" placeholder="请输入16位以内的昵称..." name="userName" 
-					@input="userNameInput" confirm-type="done" confirm-hold="true" placeholder-style="color:#000000" v-model="inputName"></input>
+					<input type="text" placeholder="请输入15位以内的昵称..." name="userName" 
+					@input="userNameInput" confirm-type="done" confirm-hold="true" v-model="inputName"></input>
 				</view>
 				<view class="cu-form-group">
-					<view class="title">密码:</view>
 					<input type="text" placeholder="请输入8-12位的密码..." name="passWord" 
-					confirm-type="done" confirm-hold="true" @input="userPasswordInput" placeholder-style="color:#000000" v-model="inputPwd"></input> 
+					confirm-type="done" confirm-hold="true" @input="userPasswordInput" v-model="inputPwd"></input> 
 				</view>
 				<view class="cu-form-group">
-					<view class="title">Uid:</view>
-					<input type="text" placeholder="请输入B站Uid..." name="UID" 
-					@input="UIDInput" confirm-type="done" confirm-hold="true" placeholder-style="color:#000000" v-model="inputUID"></input>
+					<input type="text" placeholder="请输入B站UID(不可换绑)..." name="UID" 
+					@input="UIDInput" confirm-type="done" confirm-hold="true" v-model="inputUID"></input>
 				</view>
 			</form>
 			<view class="padding">
-				<button class="cu-btn block bg-blue margin-tb-sm lg" size="mini" @click="subBtn_regis()" :disabled="hasPwd||hasName||hasUid" form-type="submit">
+				<button @click="subBtn_regis()" :disabled="hasPwd||hasName||hasUid" form-type="submit">
 					<text v-if="loadFlag" class="cuIcon-loading2 cuIconfont-spin"></text>确认注册
 			   </button>
 			</view>
 			<view class="padding">
-				<button class="cu-btn block bg-blue margin-tb-sm lg" @click="goToNextPage()"  size="mini" >
+				<button @click="goToNextPage()">
 					<text v-if="loadFlag" class="cuIcon-loading2 cuIconfont-spin"></text>返回登录
 				</button>
 			</view>
@@ -60,6 +57,8 @@
 				//从后端获取的数据
 				message:'',
 				Code:'',
+				//头像上传参数
+				imgSrc:'../../static/Protrait.png',
 			}
 		},
 		onPullDownRefresh() {
@@ -71,6 +70,7 @@
 				this.inputName = '';
 				this.inputPwd = '';
 				this.inputUID = '';
+				this.imgSrc = '../../static/Protrait.png';
 				uni.stopPullDownRefresh()
 			},300)
 		},
@@ -82,7 +82,7 @@
 				this.userNameLen = e.target.cursor;
 				this.username_res = e.target.value;
 				uni.setStorageSync('username_res',this.username_res);
-				if(this.userNameLen > 0){
+				if(this.userNameLen > 0 && this.userNameLen < 16){
 					this.hasName = false
 				}else{
 					this.hasName = true
@@ -93,7 +93,7 @@
 				this.userPwdLen = e.target.cursor;
 				this.password_res = e.target.value;
 				uni.setStorageSync('password_res',this.password_res);
-				if(this.userPwdLen >= 8){
+				if(this.userPwdLen >= 8 && this.userPwdLen <= 12){
 					this.hasPwd = false;
 				}
 				else{
@@ -105,7 +105,7 @@
 				this.UidLen = e.target.cursor;
 				this.uid_res = e.target.value;
 				uni.setStorageSync('uid_res',this.uid_res);
-				if(this.UidLen > 0){
+				if(this.UidLen > 0 && this.UidLen < 21){
 					this.hasUid = false;
 				}
 				else{
@@ -115,7 +115,7 @@
 			subBtn_regis(e){
 				this.Uname = uni.getStorageSync('username_res'),
 				this.Upassword = uni.getStorageSync('password_res'),
-				this.Uuid = uni.getStorageSync('uid_res'),
+				this.Uuid = uni.getStorageSync('uid_res')
 				setTimeout(()=>{
 					uni.request({
 						url:'http://47.113.196.102:5000/register',
@@ -124,7 +124,6 @@
 						header: {
 						  'content-type': 'application/x-www-form-urlencoded' //表明后端接收的是（表单）字符串类型，例如'id=1231454&sex=男' 
 						 },
-
 						success: (res) => {
 							this.Code = JSON.stringify(res.data.status)
 							if(this.Code == 200){
@@ -135,12 +134,22 @@
 								this.hasName = true,
 								this.hasPwd = true,
 								this.hasUid = true,
+								uni.uploadFile({
+								    url: 'http://47.113.196.102:5000/uploadpic', //仅为示例，非真实的接口地址
+								    filePath: this.imgSrc,
+								    name: 'icon',
+									formData: {
+									 'username': this.Uname		
+									            },
+								});
+								this.imgSrc = '../../static/Protrait.png',
 								uni.showToast({
 									title: "注册成功!"
-								});
+								})
 							}
 							if(this.Code == 400){
 								uni.showToast({
+									icon: "none",
 									title: JSON.stringify(res.data.message)
 								})
 							}
@@ -153,6 +162,15 @@
 					url:'../login/login'
 				})
 		},
+			uploadImg(){
+				uni.chooseImage({
+					count: 1,
+					success: (res) => {
+						const tempFilePaths = res.tempFilePaths;
+						this.imgSrc = tempFilePaths[0];
+					}
+				})
+			}
 		}
 	}
 </script>
@@ -161,14 +179,19 @@
 	page{
 		width:100%;
 		height: 100%;
-		background-size: 100% 100%;
-		background-image: url(https://pica.zhimg.com/80/v2-8411510fe4d28ecf4c262e3b520bd6c7_720w.jpg?source=1940ef5c);
 	}
 	.slogan{
 		text-align: center;
+		overflow: hidden;
+		margin: 0 auto;
+		margin-top: 10%;
+		margin-bottom: 8%;
 	}
 	.slogan image{
-		width: 65%;
+		// width: 145px;
+		// height: 145px;
+		width: 44%;
+		border-radius: 50%;
 	}
 	.cu-form-group{
 		margin-bottom: 50rpx;
@@ -188,10 +211,28 @@
 		text-align: center;
 	}
 	input{
-		width: 550rpx;
-		height: 70rpx;
-		align-items: center;
-		color: #000000;
-		border-color: #000000;
+		
+			font-size: 35rpx;
+			text-align: left;
+			padding-left: 30rpx;
+			border-radius: 40rpx;
+			line-height: 80rpx;
+			margin: 0 auto;
+			border: 3rpx solid #f27498;
+			width: 550rpx;
+			height: 80rpx;
+			color: #000000;
+		
+	}
+	button{
+		 font-size: 40rpx;
+		 border-radius: 40rpx;
+		 line-height: 80rpx;
+		 width: 550rpx;
+		 height: 80rpx;
+		 font-weight: 700;
+		 color: #FFFFFF;
+		 background-color: #f27498;
+		 // border-radius:  
 	}
 </style>
