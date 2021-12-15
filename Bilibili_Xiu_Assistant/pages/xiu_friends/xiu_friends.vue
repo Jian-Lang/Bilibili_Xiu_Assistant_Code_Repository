@@ -3,17 +3,17 @@
 		<view>
 			<view class="head" @click="change">咻友录<span class="icon-user-plus" @click="searchFriends"></span></view>
 		</view>
-		<view class="content" @click="goToFriendPage">
-			<view :class = "currentfriendclass" v-for="(item,index) in friendList" :key="index">
-				<view :class="currentIconClass"><image :class = "currentImgClass" :src= "imgSrc+item.username"  mode="widthFix"></image></view>
+		<view class="content" @click="goToFriendPage(item.username)" v-for="(item,index) in friendList" :key="index">
+			<view :class = "currentfriendclass">
+				<view :class="currentIconClass"><image :class = "currentImgClass" :src= "imgSrc+item.username"  mode="widthFix"></image>
+				</view>
 				<view :class="currentNickClass">
 					<text>{{item.username}}</text>
 				</view>
-				<span  @click.stop ="deletefriend(item.username)" :class="currentFontIconClass"></span>
+				<span @click.stop ="deletefriend(item.username)" :class="currentFontIconClass"></span>
 			</view>
 		</view>
 	</view>
-
 </template>
 
 <script>
@@ -32,15 +32,14 @@
 				// currentIconClass : 'icon_searched',
 				// currentNickClass : 'nickname_searched',
 				// currentFontIconClass : "icon-user-minus",
-				imgSrc:'http://47.113.196.102:8080/icon/',
+				imgSrc:'https://www.zhangwenning.top:8080/icon/',
 				username: ''
-
 			}
 		},
 		onShow() {
 			this.username = uni.getStorageSync("username_log")
 			uni.request({
-				url:'http://47.113.196.102:5000/getfriend',
+				url:'https://www.zhangwenning.top:5000/getfriend',
 				method:'GET',	
 				data:{username : this.username},
 				header: {
@@ -72,10 +71,10 @@
 					url: "../searchFriends/searchFriends"
 				})
 			},
-			refresh(e){
+			refresh(){
 				this.username = uni.getStorageSync("username_log"),
 				uni.request({
-					url:'http://47.113.196.102:5000/getfriend',
+					url:'https://www.zhangwenning.top:5000/getfriend',
 					method:'GET',	
 					data:{username : this.username},
 					header: {
@@ -99,7 +98,7 @@
 					success: function (res) {
 					    if (res.confirm) {	
 							uni.request({
-								url:'http://47.113.196.102:5000/deletefriend',
+								url:'https://www.zhangwenning.top:5000/deletefriend',
 								method:'GET',	
 								data:{username : name,friendname:e},
 								header: {
@@ -112,21 +111,18 @@
 									// this.friendList = res.data
 								 }
 							})
-							_this.refresh(e)
+							_this.refresh()
 					    } else if (res.cancel) {
 					        
 					    }
 					}
 				})
 			},
-			goToFriendPage(){
+			goToFriendPage(e){
+				uni.setStorageSync("friend_name",e),
 				uni.navigateTo({
 					url: "../xiu_friendPage/xiu_friendPage"
 				})
-			},
-			testFn (e) {
-			
-			　　e.preventDefault();
 			}
 		}	
 	}
@@ -140,11 +136,11 @@
 	}
 	.head{
 		position: relative;
-		margin-top: 20rpx;
+		margin-top: 30rpx;
 		font-weight: 600;
 		font-size: 40rpx;
 		text-align: center;
-		margin-bottom: 60rpx;
+		margin-bottom: 30rpx;
 	}
 	.icon-user-plus{
 		position: absolute;
@@ -165,6 +161,7 @@
 		height: 0rpx;
 	}
 	.nickname_searched{
+		font-size: 35rpx;
 		margin-left: 25rpx;
 		line-height: 100rpx;
 	}

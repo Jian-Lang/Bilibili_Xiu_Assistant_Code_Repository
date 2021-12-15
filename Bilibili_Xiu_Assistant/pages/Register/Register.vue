@@ -58,7 +58,7 @@
 				message:'',
 				Code:'',
 				//头像上传参数
-				imgSrc:'../../static/Protrait.png',
+				imgSrc:'../../static/Protrait.png'
 			}
 		},
 		onPullDownRefresh() {
@@ -118,7 +118,7 @@
 				this.Uuid = uni.getStorageSync('uid_res')
 				setTimeout(()=>{
 					uni.request({
-						url:'http://47.113.196.102:5000/register',
+						url:'https://www.zhangwenning.top:5000/register',
 						method:'POST',	
 						data:{username : this.Uname, password : this.Upassword, B_UID : this.Uuid},
 						header: {
@@ -135,7 +135,7 @@
 								this.hasPwd = true,
 								this.hasUid = true,
 								uni.uploadFile({
-								    url: 'http://47.113.196.102:5000/uploadpic', //仅为示例，非真实的接口地址
+								    url: 'https://www.zhangwenning.top:5000/uploadpic', //仅为示例，非真实的接口地址
 								    filePath: this.imgSrc,
 								    name: 'icon',
 									formData: {

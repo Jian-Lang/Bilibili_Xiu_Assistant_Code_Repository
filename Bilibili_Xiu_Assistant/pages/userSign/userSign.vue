@@ -53,7 +53,7 @@
 				this.content = uni.getStorageSync("sign"),
 				this.username = uni.getStorageSync("username_log"),
 				uni.request({
-					url:'http://47.113.196.102:5000/uploadsign',
+					url:'https://www.zhangwenning.top:5000/uploadsign',
 					method:'GET',	
 					data:{username : this.username, sign : this.content},
 					header: {

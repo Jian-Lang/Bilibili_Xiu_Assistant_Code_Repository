@@ -1,0 +1,69 @@
+
+page{
+	display: flex;
+	flex-direction: column;
+	background-color: #ededed;
+}
+.none{
+	width: 0;
+	height: 0;
+}
+.hasSpeContent{
+	background-color: #FFFFFF;
+	margin: 0 auto;
+	width: 100%;
+	padding-top: 20rpx;
+	padding-bottom: 20rpx;
+	margin-bottom: 30rpx;
+}
+.hasSpeUpper{
+	margin: 0 auto;
+	width: 94%;
+	margin-bottom: 12rpx;
+}
+.hasSpeIcon{
+	float: left;
+}
+.hasSpeImg{
+	
+	line-height: 100rpx;
+	width: 94rpx;
+	height: 94rpx;
+	margin-top: 3rpx;
+	border-radius: 50%;
+}
+.hasSpeNick{
+	margin-top: 5rpx;
+	font-weight: 700;
+	font-size: 35rpx;
+	margin-left: 20rpx;
+	line-height: 50rpx;
+	float: left;
+}
+.time{
+	font-weight: 400;
+	line-height: 50rpx;
+	color: #999ca1;
+	font-size: 25rpx;
+}
+.hasSpeVideo{
+	margin: 0 auto;
+	text-align: center;
+	width: 94%;
+	margin-bottom: 6rpx;
+}
+.clear{
+	clear: both;
+}
+.hasSpeVideoImage{
+	width: 100%;
+	border-radius: 9rpx;
+}
+.hasSpeVideoTitle{
+	margin: 0 auto;
+	width: 94%;
+	font-size: 30rpx;
+	font-weight: 700;
+}
+
+

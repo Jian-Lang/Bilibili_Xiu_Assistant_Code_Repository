@@ -9,7 +9,17 @@
     "pages/user_protocol/user_protocol",
     "pages/userSign/userSign",
     "pages/searchFriends/searchFriends",
-    "pages/xiu_friendPage/xiu_friendPage"
+    "pages/xiu_friendPage/xiu_friendPage",
+    "pages/searchResults/searchResults",
+    "pages/specialCarePage/specialCarePage",
+    "pages/focusedPage/focusedPage",
+    "pages/Test/Test",
+    "pages/SpecialCareBroadcast/SpecialCareBroadcast",
+    "pages/BilibiliVideoPage/BilibiliVideoPage",
+    "pages/RefreshDaySetting/RefreshDaySetting",
+    "pages/SettingPage/SettingPage",
+    "pages/friendFocusedPage/friendFocusedPage",
+    "pages/friendSpecialCarePage/friendSpecialCarePage"
   ],
   "subPackages": [],
   "window": {
@@ -26,22 +36,22 @@
         "pagePath": "pages/search/search",
         "iconPath": "static/search.png",
         "text": "搜索",
-        "selectedIconPath": "static/search.png"
+        "selectedIconPath": "static/searchChosen.png"
       },
       {
         "pagePath": "pages/xiu_friends/xiu_friends",
         "iconPath": "static/friends.png",
         "text": "咻友",
-        "selectedIconPath": "static/friends.png"
+        "selectedIconPath": "static/friendsChosen.png"
       },
       {
         "pagePath": "pages/mine/mine",
         "iconPath": "static/mine.png",
         "text": "我的",
-        "selectedIconPath": "static/mine.png"
+        "selectedIconPath": "static/mineChosen.png"
       }
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap75.json"
+  "sitemapLocation": "sitemap20.json"
 }
