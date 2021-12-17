@@ -223,7 +223,7 @@ var _default =
       this.Uname = uni.getStorageSync('username_log');
       this.Upassword = uni.getStorageSync('password_log');
       uni.request({
-        url: "http://47.113.196.102:5000/login",
+        url: "https://www.zhangwenning.top:5000/login",
         method: "POST",
         header: {
           'content-type': 'application/x-www-form-urlencoded' //后端接收的是（表单）字符串类型，例如'id=1231454&sex=男'

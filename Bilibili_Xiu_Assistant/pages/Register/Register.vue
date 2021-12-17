@@ -18,7 +18,7 @@
 				</view>
 			</form>
 			<view class="padding">
-				<button @click="subBtn_regis()" :disabled="hasPwd||hasName||hasUid" form-type="submit">
+				<button @click="subBtn_regis()" :disabled="hasPwd||hasName||hasUid||hasImg" form-type="submit">
 					<text v-if="loadFlag" class="cuIcon-loading2 cuIconfont-spin"></text>确认注册
 			   </button>
 			</view>
@@ -29,7 +29,6 @@
 			</view>
 		</view>
 </template>
-
 <script>
 	export default{
 		data(){
@@ -59,6 +58,7 @@
 				Code:'',
 				//头像上传参数
 				imgSrc:'../../static/Protrait.png',
+				hasImg: true
 			}
 		},
 		onPullDownRefresh() {
@@ -67,6 +67,7 @@
 				this.hasName = true
 				this.hasPwd = true
 				this.hasUid = true
+				this.hasImg = true
 				this.inputName = '';
 				this.inputPwd = '';
 				this.inputUID = '';
@@ -118,7 +119,7 @@
 				this.Uuid = uni.getStorageSync('uid_res')
 				setTimeout(()=>{
 					uni.request({
-						url:'http://47.113.196.102:5000/register',
+						url:'https://www.zhangwenning.top:5000/register',
 						method:'POST',	
 						data:{username : this.Uname, password : this.Upassword, B_UID : this.Uuid},
 						header: {
@@ -134,8 +135,9 @@
 								this.hasName = true,
 								this.hasPwd = true,
 								this.hasUid = true,
+								this.hasImg = true
 								uni.uploadFile({
-								    url: 'http://47.113.196.102:5000/uploadpic', //仅为示例，非真实的接口地址
+								    url: 'https://www.zhangwenning.top:5000/uploadpic', //仅为示例，非真实的接口地址
 								    filePath: this.imgSrc,
 								    name: 'icon',
 									formData: {
@@ -168,6 +170,7 @@
 					success: (res) => {
 						const tempFilePaths = res.tempFilePaths;
 						this.imgSrc = tempFilePaths[0];
+						this.hasImg = false
 					}
 				})
 			}

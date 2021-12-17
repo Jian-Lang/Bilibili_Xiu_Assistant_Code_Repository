@@ -4,33 +4,29 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": false
+    "urlCheck": false,
+    "postcss": false
   },
   "compileType": "miniprogram",
   "libVersion": "",
-  "appid": "touristappid",
+  "appid": "wx7cc313c1228b045a",
   "projectname": "Bilibili_Xiu_Assistant",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
+      "current": -1,
       "list": []
     },
     "conversation": {
+      "current": -1,
       "list": []
     },
     "game": {
+      "current": -1,
       "list": []
     },
     "miniprogram": {
-      "list": [
-        {
-          "name": "用户须知",
-          "query": "id=80",
-          "id": 0,
-          "pathName": "pages/mine/mine"
-        }
-      ]
+      "current": -1,
+      "list": []
     }
   }
 }

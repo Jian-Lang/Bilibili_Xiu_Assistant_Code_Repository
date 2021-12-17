@@ -38,7 +38,7 @@
 			search(){
 				this.userName = uni.getStorageSync("username_log"),
 				uni.request({
-					url:'http://47.113.196.102:5000/searchfriend',
+					url:'https://www.zhangwenning.top:5000/searchfriend',
 					method:'GET',	
 					data:{username : this.userName, friendname : this.friendName},
 					header: {
@@ -57,7 +57,7 @@
 							this.currentIconClass = "icon_searched",
 							this.currentImgClass = "image_searched",
 							this.currentclass = "friend",
-							this.imgSrc = "http://47.113.196.102:8080/icon/" + this.searchName
+							this.imgSrc = "https://www.zhangwenning.top:443/icon/" + this.searchName
 						}
 						else if(res.data.message == "1"){
 							this.currentFontIconClass = "icon-user-check"
@@ -65,7 +65,7 @@
 							this.currentIconClass = "icon_searched",
 							this.currentImgClass = "image_searched",
 							this.currentclass = "friend",
-							this.imgSrc = "http://47.113.196.102:8080/icon/" + this.searchName
+							this.imgSrc = "https://www.zhangwenning.top:443/icon/" + this.searchName
 						}
 						else{
 							this.currentFontIconClass = "icon-user-plus1"
@@ -73,7 +73,7 @@
 							this.currentIconClass = "icon_searched",
 							this.currentImgClass = "image_searched",
 							this.currentclass = "friend",
-							this.imgSrc = "http://47.113.196.102:8080/icon/" + this.searchName	
+							this.imgSrc = "https://www.zhangwenning.top:443/icon/" + this.searchName	
 						}
 			
 					 }
@@ -93,10 +93,9 @@
 			},
 			add(){
 				this.userName = uni.getStorageSync("username_log");
-				console.log(this.userName);
 				if(this.currentFontIconClass == "icon-user-plus1"){
 					uni.request({
-						url:'http://47.113.196.102:5000/addfriend',
+						url:'https://www.zhangwenning.top:5000/addfriend',
 						method:'GET',	
 						data:{username : this.userName, friendname: this.friendName},
 						header: {
@@ -105,7 +104,8 @@
 						 success: () => {
 						 	uni.showToast({
 						 		title: "添加成功"
-						 	})
+						 	}),
+							this.currentFontIconClass = "icon-user-check"
 						 }
 					})
 				}

@@ -2,7 +2,7 @@
 	<view>
 		<view class="header">
 			<view class="portrait">
-				<image :src = "imgSrc" mode="widthFix" @click="changeImg"></image>
+				<image :src = "imgSrc" mode="widthFix"></image>
 			</view>
 			<view class="personalData">
 				<view class="username">{{username}}</view>
@@ -16,23 +16,23 @@
 				<span class="text">个人信息</span>
 				<span class="icon-chevron-right icon_right"></span>
 			</view>
-			<view class="speBro">
+			<view class="speBro" @click="goToSpecialBroadcast()">
 				<span class="icon-list2 icon" style="color:#3bb5db"></span>
 				<span class="text">特别关心推送</span>
 				<span class="icon-chevron-right icon_right"></span>
 			</view>
-			<view class="speBroList">
+			<view class="speBroList" @click="goToSpecialPage">
 				<span class="icon-heart icon" style="color: #f66041"></span>
 				<span class="text">up主特别关心列表</span>
 				<span class="icon-chevron-right icon_right"></span>
 			</view>
-			<view class="focBro">
+			<view class="focBro" @click="goToFocusedPage">
 				<span class="icon-star-full icon" style="color:#eda02a;"></span>
 				<span class="text">up主关注列表</span>
 				<span class="icon-chevron-right icon_right"></span>
 			</view>
 			
-			<view class="setting">
+			<view class="setting" @click="goToSetting">
 				<span class="icon-cog icon" style="color: #4bc9ee;"></span>
 				<span class="text">设置</span>
 				<span class="icon-chevron-right icon_right"></span>
@@ -45,8 +45,8 @@
 <script>
 	export default{
 		data(){
-			return{
-				imgSrc:'http://47.113.196.102:8080/icon/' + uni.getStorageSync("username_log"),
+			return{	
+				imgSrc:'https://www.zhangwenning.top:443/icon/' + uni.getStorageSync("username_log"),
 				username:'无用户',
 				uid:'',
 				sign:'',
@@ -56,8 +56,8 @@
 		onLoad() {
 			this.username = uni.getStorageSync("username_log"),
 			uni.setStorageSync("sign",""),
-			uni.request({
-				url:'http://47.113.196.102:5000/getuser',
+			uni.request({	
+				url:'https://www.zhangwenning.top:5000/getuser',
 				method:'GET',	
 				data:{username : this.username},
 				header: {
@@ -71,12 +71,11 @@
 			})
 			uni.loadFontFace({
 			  family: 'Huawen',
-			  source: 'url("http://47.113.196.102:8080/word/华文行楷.ttf")',
+			  source: 'url("https://www.zhangwenning.top:443/word/华文行楷.ttf")',
 			  success() {
 			      console.log('success')
 			  }
-			})
-			
+			})		
 		},
 		onShow() {
 			if(uni.getStorageSync("sign") != ""){
@@ -92,33 +91,28 @@
 			},
 			getContent(e){
 				return e.substring(1,e.length-1);
+			},
+			goToSpecialPage(){
+				uni.navigateTo({
+					url: "../specialCarePage/specialCarePage"
+				})
+			},
+			goToFocusedPage(){
+				uni.navigateTo({
+					url: "../focusedPage/focusedPage"
+				})
+			},
+			goToSpecialBroadcast(){
+				uni.navigateTo({
+					url: "../SpecialCareBroadcast/SpecialCareBroadcast"
+				})
+			},
+			goToSetting(){
+				uni.navigateTo({
+					url: "../SettingPage/SettingPage"
+				})
 			}
-			// changeImg(){
-			// 	this.username = uni.getStorageSync("username_log");
-			// 	let _this = this;
-			// 	uni.chooseImage({
-			// 	    success: (chooseImageRes) => {
-			// 	        const tempFilePaths = chooseImageRes.tempFilePaths;
-			// 	        uni.uploadFile({
-			// 	            url: 'http://47.113.196.102:5000/uploadpic', //仅为示例，非真实的接口地址
-			// 	            filePath: tempFilePaths[0],
-			// 	            name: 'icon',
-			// 	            formData: {
-			// 	               'username': this.username	
-			// 	            },
-			// 	            success: (uploadFileRes) => {
-			// 	                uni.showToast({
-			// 	                	title: "头像修改成功！",
-									
-			// 	                }),
-			// 					this.imgSrc = 'http://47.113.196.102:8080/icon/' + uni.getStorageSync("username_log")
-			// 				}
-			// 	        });
-			// 	    }
-			// 	});
-			// }
 		}
-
 	}
 </script>
 
