@@ -164,7 +164,7 @@ var _self;var _default =
       // currentIconClass : 'icon_searched',
       // currentNickClass : 'nickname_searched',
       // currentFontIconClass : "icon-user-minus",
-      imgSrc: 'https://www.zhangwenning.top:8080/icon/',
+      imgSrc: 'https://www.zhangwenning.top:443/icon/',
       username: '' };
 
   },

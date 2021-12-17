@@ -161,7 +161,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 var _default =
 {
   data: function data() {
@@ -190,7 +189,8 @@ var _default =
       message: '',
       Code: '',
       //头像上传参数
-      imgSrc: '../../static/Protrait.png' };
+      imgSrc: '../../static/Protrait.png',
+      hasImg: true };
 
   },
   onPullDownRefresh: function onPullDownRefresh() {var _this = this;
@@ -199,6 +199,7 @@ var _default =
       _this.hasName = true;
       _this.hasPwd = true;
       _this.hasUid = true;
+      _this.hasImg = true;
       _this.inputName = '';
       _this.inputPwd = '';
       _this.inputUID = '';
@@ -266,6 +267,7 @@ var _default =
               _this2.hasName = true,
               _this2.hasPwd = true,
               _this2.hasUid = true,
+              _this2.hasImg = true;
               uni.uploadFile({
                 url: 'https://www.zhangwenning.top:5000/uploadpic', //仅为示例，非真实的接口地址
                 filePath: _this2.imgSrc,
@@ -300,6 +302,7 @@ var _default =
         success: function success(res) {
           var tempFilePaths = res.tempFilePaths;
           _this3.imgSrc = tempFilePaths[0];
+          _this3.hasImg = false;
         } });
 
     } } };exports.default = _default;

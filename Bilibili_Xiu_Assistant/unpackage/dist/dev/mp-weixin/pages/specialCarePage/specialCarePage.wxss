@@ -50,5 +50,10 @@ page{
 	height: 94rpx;
 	margin-top: 3rpx;
 	border-radius: 50%;
+}.un0,.un1,.un2,.un3,.un4,.un5,.un6,.un7,.un8,.un9,.un10,.un11,.un12,.un13,.un14,.un15,.un16,.un17,.un18,.un19,.un20,.un21,.un22,.un23,.un24,.un25,.un26,.un27,.un28,.un29,.un30,.un31,.un32,.un33,.un34,.un35,.un36,.un37,.un38,.un39,.un40,.un41,.un42,.un43,.un44,.un45,.un46,.un47,.un48,.un49
+{
+	color: #f66041
+}.Specilized{
+	color: #828282
 }
 

@@ -13,7 +13,6 @@
     "pages/searchResults/searchResults",
     "pages/specialCarePage/specialCarePage",
     "pages/focusedPage/focusedPage",
-    "pages/Test/Test",
     "pages/SpecialCareBroadcast/SpecialCareBroadcast",
     "pages/BilibiliVideoPage/BilibiliVideoPage",
     "pages/RefreshDaySetting/RefreshDaySetting",
@@ -52,6 +51,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap20.json"
+  "usingComponents": {}
 }

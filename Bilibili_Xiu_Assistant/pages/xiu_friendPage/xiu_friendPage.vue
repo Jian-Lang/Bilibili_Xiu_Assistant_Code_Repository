@@ -31,7 +31,7 @@
 	export default{
 		data(){
 			return{
-				imgSrc:'https://www.zhangwenning.top:8080/icon/' + uni.getStorageSync("friend_name"),
+				imgSrc:'https://www.zhangwenning.top:443/icon/' + uni.getStorageSync("friend_name"),
 				username:'无用户',
 				uid:'',
 				sign:'',
@@ -56,7 +56,7 @@
 			})
 			uni.loadFontFace({
 			  family: 'Huawen',
-			  source: 'url("https://www.zhangwenning.top:8080/word/华文行楷.ttf")',
+			  source: 'url("https://www.zhangwenning.top:443/word/华文行楷.ttf")',
 			  success() {
 			      console.log('success')
 			  }

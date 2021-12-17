@@ -57,7 +57,7 @@
 							this.currentIconClass = "icon_searched",
 							this.currentImgClass = "image_searched",
 							this.currentclass = "friend",
-							this.imgSrc = "https://www.zhangwenning.top:8080/icon/" + this.searchName
+							this.imgSrc = "https://www.zhangwenning.top:443/icon/" + this.searchName
 						}
 						else if(res.data.message == "1"){
 							this.currentFontIconClass = "icon-user-check"
@@ -65,7 +65,7 @@
 							this.currentIconClass = "icon_searched",
 							this.currentImgClass = "image_searched",
 							this.currentclass = "friend",
-							this.imgSrc = "https://www.zhangwenning.top:8080/icon/" + this.searchName
+							this.imgSrc = "https://www.zhangwenning.top:443/icon/" + this.searchName
 						}
 						else{
 							this.currentFontIconClass = "icon-user-plus1"
@@ -73,7 +73,7 @@
 							this.currentIconClass = "icon_searched",
 							this.currentImgClass = "image_searched",
 							this.currentclass = "friend",
-							this.imgSrc = "https://www.zhangwenning.top:8080/icon/" + this.searchName	
+							this.imgSrc = "https://www.zhangwenning.top:443/icon/" + this.searchName	
 						}
 			
 					 }

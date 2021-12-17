@@ -54,7 +54,15 @@
 	.img-f{
 		margin-top: 10%;
 		text-align: center;
+		animation:img-f 5s linear infinite;   
 	}
+	    @keyframes img-f{
+	      0%{-webkit-transform:rotate(0deg);}
+	      25%{-webkit-transform:rotate(90deg);}
+	      50%{-webkit-transform:rotate(180deg);}
+	      75%{-webkit-transform:rotate(270deg);}
+	      100%{-webkit-transform:rotate(360deg);}
+	    }
 	image {
 	   width: 65%;
 	   margin: auto;

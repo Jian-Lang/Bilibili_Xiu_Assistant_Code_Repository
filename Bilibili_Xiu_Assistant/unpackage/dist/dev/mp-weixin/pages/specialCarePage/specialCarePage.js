@@ -165,7 +165,7 @@ var _default =
       uid: '' };
 
   },
-  onLoad: function onLoad() {var _this2 = this;
+  onLoad: function onLoad() {var _this = this;
     //this.upperList = res.data.friend_information,
     this.username = uni.getStorageSync("username_log");
     uni.request({
@@ -177,26 +177,26 @@ var _default =
       },
       success: function success(res) {
         if (res.data.status == "400") {
-          _this2.upperList = [],
-          _this2.currentUpperClass = 'upperList_none',
-          _this2.currentImgClass = 'image_unsearched',
-          _this2.currentIconClass = 'icon_unsearched',
-          _this2.currentNickClass = 'nickname_unsearched',
-          _this2.currentFontIconClass = "fonticon_unsearched";
+          _this.upperList = [],
+          _this.currentUpperClass = 'upperList_none',
+          _this.currentImgClass = 'image_unsearched',
+          _this.currentIconClass = 'icon_unsearched',
+          _this.currentNickClass = 'nickname_unsearched',
+          _this.currentFontIconClass = "fonticon_unsearched";
         } else
         if (res.data.status == "200") {
-          _this2.upperList = res.data.data;
-          _this2.currentUpperClass = "upperList_have",
-          _this2.currentImgClass = 'image_searched',
-          _this2.currentIconClass = 'icon_searched',
-          _this2.currentNickClass = 'nickname_searched',
-          _this2.currentFontIconClass = "icon-heart";
+          _this.upperList = res.data.data;
+          _this.currentUpperClass = "upperList_have",
+          _this.currentImgClass = 'image_searched',
+          _this.currentIconClass = 'icon_searched',
+          _this.currentNickClass = 'nickname_searched',
+          _this.currentFontIconClass = "icon-heart";
         }
       } });
 
   },
   methods: {
-    refresh: function refresh() {var _this3 = this;
+    refresh: function refresh() {var _this2 = this;
       this.username = uni.getStorageSync("username_log"),
       uni.request({
         url: 'https://www.zhangwenning.top:5000/showfollowing',
@@ -207,29 +207,31 @@ var _default =
         },
         success: function success(res) {
           if (res.data.status == "400") {
-            _this3.upperList = [],
-            _this3.currentUpperClass = 'upperList_none',
-            _this3.currentImgClass = 'image_unsearched',
-            _this3.currentIconClass = 'icon_unsearched',
-            _this3.currentNickClass = 'nickname_unsearched',
-            _this3.currentFontIconClass = "fonticon_unsearched";
+            _this2.upperList = [],
+            _this2.currentUpperClass = 'upperList_none',
+            _this2.currentImgClass = 'image_unsearched',
+            _this2.currentIconClass = 'icon_unsearched',
+            _this2.currentNickClass = 'nickname_unsearched',
+            _this2.currentFontIconClass = "fonticon_unsearched";
           } else
           if (res.data.status == "200") {
-            _this3.upperList = res.data.data;
-            _this3.currentUpperClass = "upperList_have",
-            _this3.currentImgClass = 'image_searched',
-            _this3.currentIconClass = 'icon_searched',
-            _this3.currentNickClass = 'nickname_searched',
-            _this3.currentFontIconClass = "icon-heart";
+            _this2.upperList = res.data.data;
+            _this2.currentUpperClass = "upperList_have",
+            _this2.currentImgClass = 'image_searched',
+            _this2.currentIconClass = 'icon_searched',
+            _this2.currentNickClass = 'nickname_searched',
+            _this2.currentFontIconClass = "icon-heart";
           }
         } });
 
     },
-    deleteSpecialList: function deleteSpecialList(e, f) {
-      var _this = this;
-      var name = uni.getStorageSync("username_log");
+    deleteSpecialList: function deleteSpecialList(e) {
+      this.username = uni.getStorageSync("username_log");
+      var name = this.username;
+      console.log(e),
+      console.log(this.username);
       uni.showModal({
-        title: "确定不再特别关心" + f + "吗？",
+        title: "确定不再特别关心吗？（下次进入可见修改）",
         confirmText: '确定',
         cancelText: '取消',
         success: function success(res) {
@@ -243,12 +245,19 @@ var _default =
               },
               success: function success(res) {
                 uni.showToast({
-                  title: "删除成功" });
+                  title: "取消成功" });
 
                 // this.friendList = res.data
               } });
 
-            _this.refresh();
+            // setTimeout(3000,()=>{
+            // 	uni.showLoading({
+            // 	                    title: '加载中',
+            // 	                });
+            // });
+            // uni.hideLoading();
+            // _this.refresh();
+            // _this.refresh()
           } else if (res.cancel) {
           }
         } });

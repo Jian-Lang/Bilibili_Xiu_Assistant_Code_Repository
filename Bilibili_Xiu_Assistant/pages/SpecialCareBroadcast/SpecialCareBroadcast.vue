@@ -73,8 +73,8 @@
 		},
 		methods:{
 			goToVideo(e){
-			
 				uni.setStorageSync("video_url",e),
+				console.log(e)
 				console.log(uni.getStorageSync("video_url"))
 				uni.navigateTo({
 					url: "../BilibiliVideoPage/BilibiliVideoPage"

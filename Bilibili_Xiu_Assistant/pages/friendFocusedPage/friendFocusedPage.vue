@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view>
-			<view class="head" @click="change">关注列表</view>
+			<view class="head" @click="change">好友关注列表</view>
 		</view>
 		<view class="content" v-for="(item,index) in upperList" :key="index">
 			<view :class = "currentUpperClass">

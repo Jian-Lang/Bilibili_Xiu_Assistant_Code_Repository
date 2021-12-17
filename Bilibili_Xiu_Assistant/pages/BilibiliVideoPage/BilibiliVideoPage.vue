@@ -1,6 +1,12 @@
 <template>
 	<view>
-		<web-view :src="url"></web-view>
+		<!-- <web-view :src="url"></web-view> -->
+		<view class="title">
+			视频链接如下，请点击后跳转！
+		</view>
+		<view class="url">
+			<text user-select="true">{{url}}</text>	
+		</view>
 	</view>
 </template>
 
@@ -19,4 +25,19 @@
 </script>
 
 <style>
+		
+	.title{
+		font-size: 45rpx;
+		/* margin: 0 auto; */
+		margin-top: 30rpx;
+		width: 100%;
+		text-align: center;
+	}
+		
+	.url{
+		text-align: center;
+		margin: 0 auto;
+		margin-top: 30rpx;
+		font-size: 25rpx;
+	}
 </style>

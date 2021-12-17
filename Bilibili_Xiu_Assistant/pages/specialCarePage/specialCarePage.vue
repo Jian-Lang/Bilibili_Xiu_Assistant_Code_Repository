@@ -11,7 +11,7 @@
 					<text>{{item.up_name}}</text>
 				</view>
 				<span>
-					<span @click = "deleteSpecialList(item.up_uid,item.up_name)" :class="currentFontIconClass" style="color: #f66041"></span>
+					<span @click = "deleteSpecialList(item.up_uid)" :class="currentFontIconClass" style="color: #f66041"></span>
 				</span>
 			</view>
 		</view>
@@ -93,11 +93,13 @@
 					 }
 				})
 			},
-			deleteSpecialList(e,f){
-				let _this = this;
-				let name = uni.getStorageSync("username_log")
+			deleteSpecialList(e){
+				this.username = uni.getStorageSync("username_log");
+				let name = this.username;
+				console.log(e),
+				console.log(this.username)
 				uni.showModal({
-					title: "确定不再特别关心" + f + "吗？",
+					title: "确定不再特别关心吗？（下次进入可见修改）",
 					confirmText: '确定',
 					cancelText: '取消',
 					success: function (res) {
@@ -105,18 +107,25 @@
 							uni.request({
 								url:'https://www.zhangwenning.top:5000/deletefollowing',
 								method:'GET',	
-								data:{username:name,uid:e},
+								data:{username:name, uid:e},
 								header: {
 								  'content-type': 'application/x-www-form-urlencoded' //表明后端接收的是（表单）字符串类型，例如'id=1231454&sex=男' 
 								 },
 								 success: (res) => {
 								 	uni.showToast({
-								 		title: "删除成功",
+								 		title: "取消成功",
 								 	})
 									// this.friendList = res.data
 								 }
 							})
-							_this.refresh()
+							// setTimeout(3000,()=>{
+							// 	uni.showLoading({
+							// 	                    title: '加载中',
+							// 	                });
+							// });
+							// uni.hideLoading();
+							// _this.refresh();
+							// _this.refresh()
 					    } else if (res.cancel) {     
 					    }
 					}
@@ -189,5 +198,16 @@
 		height: 94rpx;
 		margin-top: 3rpx;
 		border-radius: 50%;
+	}
+	.un0,.un1,.un2,.un3,.un4,.un5,.un6,.un7,.un8,.un9,.un10,
+	.un11,.un12,.un13,.un14,.un15,.un16,.un17,.un18,.un19,
+	.un20,.un21,.un22,.un23,.un24,.un25,.un26,.un27,.un28,.un29,
+	.un30,.un31,.un32,.un33,.un34,.un35,.un36,.un37,.un38,.un39,
+	.un40,.un41,.un42,.un43,.un44,.un45,.un46,.un47,.un48,.un49
+	{
+		color: #f66041
+	}
+	.Specilized{
+		color: #828282
 	}
 </style>

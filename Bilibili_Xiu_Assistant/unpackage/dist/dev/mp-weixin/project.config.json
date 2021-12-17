@@ -11,19 +11,21 @@
   "libVersion": "",
   "appid": "wx7cc313c1228b045a",
   "projectname": "Bilibili_Xiu_Assistant",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
+      "current": -1,
       "list": []
     },
     "conversation": {
+      "current": -1,
       "list": []
     },
     "game": {
+      "current": -1,
       "list": []
     },
     "miniprogram": {
+      "current": -1,
       "list": []
     }
   }
