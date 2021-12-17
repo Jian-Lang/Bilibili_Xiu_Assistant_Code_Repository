@@ -98,24 +98,27 @@ def getconcernlist1(vmid_list):
     return lists
 
 
-def getsearchresult(keyword):
+def getsearchresult(uid_list, keyword):
     # 显示用户搜索的结果
+    """
+    :param uid_list:用户的关心列表（列表类）
+    :param keyword:搜索的关键词（str类）
+    :return:搜素的结果（字典类）（按粉丝量排序的用户，包括是否被该用户关注的信息）
+    """
     api = 'https://api.bilibili.com/x/web-interface/search/type?&page=1&keyword=' + keyword + '&search_type=bili_user&order=fans'
     response2 = requests.get(api)
     search_result_dict = response2.json()
     num = search_result_dict['data']['numResults']
     if num == 0:
-        return {
-            'status': 400,
-            'message': '什么都没有搜到QAQ'
-        }
+        return '什么都没有找到啊TAT'
     else:
         searchresult = {}
-        searchresult['search'] = keyword
+        searchresult['search_keyword'] = keyword
+        searchresult['number of result'] = num
         user = []
         for n in range(0, len(search_result_dict['data']['result'])):
             name = search_result_dict['data']['result'][n]['uname']
-            face = 'https:'+search_result_dict['data']['result'][n]['upic']
+            face = 'https:' + search_result_dict['data']['result'][n]['upic']
             if search_result_dict['data']['result'][n]['usign'] == '':
                 if search_result_dict['data']['result'][n]['official_verify']['desc'] == '':
                     information = '这个用户什么都没有留下~'
@@ -123,7 +126,15 @@ def getsearchresult(keyword):
                     information = search_result_dict['data']['result'][n]['official_verify']['desc'].replace('\n', '  ')
             else:
                 information = search_result_dict['data']['result'][n]['usign'].replace('\n', '  ')
-            user.append({'rname': name, 'rface': face, 'rinformation': information})
+            mid = search_result_dict['data']['result'][n]['mid']
+            hasfollowed = 0
+            for m in range(0, len(uid_list)):
+                if uid_list[m] == mid:
+                    hasfollowed = 1
+            if hasfollowed == 1:
+                user.append({'rname': name, 'rface': face, 'rinformation': information, 'hasfollowed': 'TRUE'})
+            else:
+                user.append({'rname': name, 'rface': face, 'rinformation': information, 'hasfollowed': 'FALSE'})
         searchresult['user'] = user
     return searchresult
 

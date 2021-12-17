@@ -44,7 +44,8 @@ class RegisterApi(Resource):  # ----->类视图
         user.username = username
         user.password = password
         user.B_UID = B_UID
-        user.Sign = '该用户什么都没留下哦'
+        user.Sign = '该用户什么都没留下哦！'
+        user.Day = 2
         db.session.add(user)
         db.session.commit()
         return {
@@ -101,7 +102,8 @@ user_fields = {
     'id': fields.Integer,
     'username': fields.String,
     'B_UID': fields.String,
-    'Sign': fields.String
+    'Sign': fields.String,
+    'Day': fields.Integer
 }
 getuser_parser = reqparse.RequestParser()
 getuser_parser.add_argument('username', type = str, required = True)
@@ -116,7 +118,52 @@ class Get_user(Resource):
         return user
 
 
+upload_sign_parser = reqparse.RequestParser()
+upload_sign_parser.add_argument('username', type = str, required = True)
+upload_sign_parser.add_argument('sign', type = str, required = True, help = '保存内容不可为空哦')
+
+
+class UploadSignApi(Resource):
+    def get(self):
+        args = upload_sign_parser.parse_args()
+        username = args.get('username')
+        sign = args.get('sign')
+        if sign:
+            user = User.query.filter(User.username == username).first()
+            user.Sign = sign
+            db.session.add(user)
+            db.session.commit()
+            return {
+                'status': 200,
+                'message': '修改成功',
+                'sign': sign
+            }
+
+
+change_day_parser = reqparse.RequestParser()
+change_day_parser.add_argument('username', type = str, required = True)
+change_day_parser.add_argument('day', type = int, required = True)
+
+
+class Change_day(Resource):
+    def get(self):
+        args = change_day_parser.parse_args()
+        username = args.get('username')
+        day = args.get('day')
+        user = User.query.filter(User.username == username).first()
+        print(user.Day, user.username)
+        user.Day = int(day)
+        db.session.add(user)
+        db.session.commit()
+        return {
+            'status': 200,
+            'message': '修改成功'
+        }
+
+
 api.add_resource(RegisterApi, '/register')
-api.add_resource(UploadPicApi, '/upload')
+api.add_resource(UploadPicApi, '/uploadpic')
+api.add_resource(UploadSignApi, '/uploadsign')
 api.add_resource(LoginApi, '/login')
 api.add_resource(Get_user, '/getuser')
+api.add_resource(Change_day, '/changeday')
