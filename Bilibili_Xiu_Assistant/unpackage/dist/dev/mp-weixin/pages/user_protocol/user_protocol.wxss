@@ -1,0 +1,16 @@
+
+.title{
+	margin-top: 30rpx;
+	text-align: center;
+	font-size: 70rpx;
+	font-weight: 700;
+}
+.subtitle{
+	margin-top: 40rpx;
+	font-size: 36rpx;
+	font-weight: 700;
+}
+.subcontent{
+}
+
+
