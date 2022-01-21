@@ -1,0 +1,164 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/start/start",
+			"style": {
+				"navigationBarTitleText": "哔哩哔哩_咻管家",
+				"enablePullDownRefresh": true,
+				"backgroundColor":"#333333",
+				"backgroundTextStyle":"light"
+			}
+		},
+		{
+			"path":"pages/Register/Register",
+			"style":{
+				"navigationBarTitleText": "咻管家_注册界面",
+				"enablePullDownRefresh": true,
+				"backgroundColor":"#333333",
+				"backgroundTextStyle":"light"
+			}
+		},
+		{
+			"path":"pages/login/login",
+			"style":{
+				"navigationBarTitleText": "咻管家_登录界面",
+				"enablePullDownRefresh": true,
+				"backgroundColor":"#333333",
+				"backgroundTextStyle":"light"
+			}
+		},
+		{
+			"path":"pages/search/search",
+			"style":{
+				"navigationBarTitleText": "咻管家_搜索界面"
+			}
+		},
+		{
+			"path":"pages/xiu_friends/xiu_friends",
+			"style":{
+				"navigationBarTitleText": "咻管家_好友界面"
+			}
+		},
+		{
+			"path":"pages/mine/mine",
+			"style":{
+				"navigationBarTitleText": "咻管家_个人主页"
+			}
+		},
+		{
+			"path":"pages/user_protocol/user_protocol",
+			"style":{
+				"navigationBarTitleText": "咻管家_用户须知"
+			}
+		},
+		{
+			"path":"pages/userSign/userSign",
+			"style":{
+				"navigationBarTitleText": "咻管家_个性签名设置"
+			}
+		},
+		{
+			"path":"pages/searchFriends/searchFriends",
+			"style":{
+				"navigationBarTitleText": "咻管家_咻友搜索界面"
+			}
+		},
+		{
+			"path":"pages/xiu_friendPage/xiu_friendPage",
+			"style":{
+				"navigationBarTitleText": "咻管家_咻友的主页"
+			}
+		},
+		{
+			"path":"pages/searchResults/searchResults",
+			"style":{
+				"navigationBarTitleText": "咻管家_up主搜索结果"
+			}
+		},
+		{
+			"path":"pages/specialCarePage/specialCarePage",
+			"style":{
+				"navigationBarTitleText": "咻管家_特别关心界面"
+			}
+		},
+		{
+			"path":"pages/focusedPage/focusedPage",
+			"style":{
+				"navigationBarTitleText": "咻管家_关注界面"
+			}
+		},
+		{
+			"path":"pages/SpecialCareBroadcast/SpecialCareBroadcast",
+			"style":{
+				"navigationBarTitleText": "咻管家_up主视频推送界面"
+			}
+		},
+		{
+			"path":"pages/BilibiliVideoPage/BilibiliVideoPage",
+			"style":{
+				"navigationBarTitleText": "咻管家_视频播放界面"
+			}
+		},
+		{
+			"path":"pages/RefreshDaySetting/RefreshDaySetting",
+			"style":{
+				"navigationBarTitleText": "咻管家_更新天数设置"
+			}
+		},
+		{
+			"path":"pages/SettingPage/SettingPage",
+			"style":{
+				"navigationBarTitleText": "咻管家_设置界面"
+			}
+		},
+		{
+			"path":"pages/friendFocusedPage/friendFocusedPage",
+			"style":{
+				"navigationBarTitleText": "咻管家_好友关注界面"
+			}
+		},
+		{
+			"path":"pages/friendSpecialCarePage/friendSpecialCarePage",
+			"style":{
+				"navigationBarTitleText": "咻管家_好友特别关心界面"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar":{
+		"color":"#999999",
+		"selectedColor":"#f27498",
+		"list":[
+			{"pagePath":"pages/search/search",
+			"iconPath":"static/search.png",
+			"text":"搜索",
+			"selectedIconPath":"static/searchChosen.png"
+			},
+			{"pagePath":"pages/xiu_friends/xiu_friends",
+			"iconPath":"static/friends.png",
+			"text":"咻友",
+			"selectedIconPath":"static/friendsChosen.png"
+			},
+			{"pagePath":"pages/mine/mine",
+			"iconPath":"static/mine.png",
+			"text":"我的",
+			"selectedIconPath":"static/mineChosen.png"
+			}
+		]
+	}
+	// "condition":{
+	// 	"current": 0,
+	// 	"list":[
+	// 		{
+	// 			"name":"测试页",
+	// 			"path":"pages/mine/mine",
+	// 			"query":"id=80"
+	// 		}
+	// 	]
+	// }
+}

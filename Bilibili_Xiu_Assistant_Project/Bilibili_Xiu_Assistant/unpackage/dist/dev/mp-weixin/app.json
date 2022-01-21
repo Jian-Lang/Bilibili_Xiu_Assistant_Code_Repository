@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/start/start",
+    "pages/Register/Register",
+    "pages/login/login",
+    "pages/search/search",
+    "pages/xiu_friends/xiu_friends",
+    "pages/mine/mine",
+    "pages/user_protocol/user_protocol",
+    "pages/userSign/userSign",
+    "pages/searchFriends/searchFriends",
+    "pages/xiu_friendPage/xiu_friendPage",
+    "pages/searchResults/searchResults",
+    "pages/specialCarePage/specialCarePage",
+    "pages/focusedPage/focusedPage",
+    "pages/SpecialCareBroadcast/SpecialCareBroadcast",
+    "pages/BilibiliVideoPage/BilibiliVideoPage",
+    "pages/RefreshDaySetting/RefreshDaySetting",
+    "pages/SettingPage/SettingPage",
+    "pages/friendFocusedPage/friendFocusedPage",
+    "pages/friendSpecialCarePage/friendSpecialCarePage"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#f27498",
+    "list": [
+      {
+        "pagePath": "pages/search/search",
+        "iconPath": "static/search.png",
+        "text": "搜索",
+        "selectedIconPath": "static/searchChosen.png"
+      },
+      {
+        "pagePath": "pages/xiu_friends/xiu_friends",
+        "iconPath": "static/friends.png",
+        "text": "咻友",
+        "selectedIconPath": "static/friendsChosen.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "static/mine.png",
+        "text": "我的",
+        "selectedIconPath": "static/mineChosen.png"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap91.json"
+}
